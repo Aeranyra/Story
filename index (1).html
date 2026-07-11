@@ -1,0 +1,1107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Every Quiet Night — A Collection</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Dancing+Script:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --sky:        #E7E1F4;
+    --sky-deep:   #D2C4EA;
+    --night:      #2E2447;
+    --ink:        #34274A;
+    --ink-soft:   #6B5390;
+    --accent:     #8B6FB3;
+    --accent-soft:#C9B8E8;
+    --gold:       #B39BD6;
+    --paper:      #FBFAFD;
+  }
+
+  *{box-sizing:border-box;}
+
+  body{
+    margin:0;
+    min-height:100vh;
+    background:
+      radial-gradient(ellipse 900px 700px at 50% -10%, #B39BD6 0%, #9C82C4 45%, #6E5799 100%);
+    color:var(--ink);
+    font-family:'EB Garamond', serif;
+    -webkit-font-smoothing:antialiased;
+    overflow:hidden;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .sheet{ transition:none !important; }
+    .sky-decor svg{ animation:none !important; }
+  }
+
+  /* ---------- floating background moths ---------- */
+  .sky-decor{
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    z-index:0;
+    overflow:hidden;
+  }
+  .sky-decor svg{
+    position:absolute;
+    opacity:0.45;
+    animation:drift 24s ease-in-out infinite;
+  }
+  .sky-decor svg:nth-child(1){ top:9%;  left:5%;  width:38px; animation-duration:20s; }
+  .sky-decor svg:nth-child(2){ top:20%; right:8%; width:30px; animation-duration:27s; animation-delay:-4s; }
+  .sky-decor svg:nth-child(3){ top:76%; left:6%;  width:26px; animation-duration:22s; animation-delay:-9s; }
+  .sky-decor svg:nth-child(4){ top:68%; right:7%; width:32px; animation-duration:25s; animation-delay:-13s; }
+
+  @keyframes drift{
+    0%,100%{ transform:translate(0,0) rotate(-3deg); }
+    50%{ transform:translate(-8px,-16px) rotate(5deg); }
+  }
+
+  /* ---------- stage ---------- */
+  .stage{
+    position:relative;
+    z-index:1;
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    padding:24px 16px;
+    gap:18px;
+  }
+
+  .book-wrap{
+    position:relative;
+    width:min(560px, 92vw);
+    height:min(760px, 78vh);
+    perspective:2200px;
+  }
+
+  .book-wrap::before{
+    content:"";
+    position:absolute;
+    inset:6px -6px -10px 4px;
+    background:linear-gradient(90deg, transparent 0%, transparent 92%, rgba(52,39,74,0.10) 92%, rgba(52,39,74,0.10) 100%),
+               repeating-linear-gradient(180deg, rgba(52,39,74,0.06) 0 1px, transparent 1px 4px);
+    border-radius:10px;
+    z-index:0;
+  }
+
+  .book{
+    position:relative;
+    width:100%;
+    height:100%;
+    border-radius:10px;
+    box-shadow:
+      0 2px 0 rgba(255,255,255,0.6) inset,
+      0 30px 60px -20px rgba(52,39,74,0.38),
+      0 10px 25px -10px rgba(52,39,74,0.28);
+    background:var(--paper);
+  }
+
+  .book::after{
+    content:"";
+    position:absolute;
+    top:0; bottom:0; left:0;
+    width:36px;
+    background:linear-gradient(90deg, rgba(52,39,74,0.16), transparent);
+    z-index:5;
+    pointer-events:none;
+    border-radius:10px 0 0 10px;
+  }
+
+  .sheet{
+    position:absolute;
+    inset:0;
+    transform-style:preserve-3d;
+    transform-origin:left center;
+    transform:rotateY(0deg);
+    transition:transform 0.85s cubic-bezier(.45,.05,.35,1);
+    border-radius:10px;
+  }
+
+  .sheet-face{
+    position:absolute;
+    inset:0;
+    backface-visibility:hidden;
+    border-radius:10px;
+    background:var(--paper);
+    overflow:hidden;
+  }
+  .sheet-face.back{
+    transform:rotateY(180deg);
+  }
+
+  .page-frame{
+    position:relative;
+    width:100%;
+    height:100%;
+    padding:34px 30px 46px;
+    display:flex;
+    flex-direction:column;
+  }
+
+  .page-content{
+    flex:1;
+    overflow-y:auto;
+    padding-right:6px;
+    scrollbar-width:thin;
+    scrollbar-color:var(--accent-soft) transparent;
+  }
+  .page-content::-webkit-scrollbar{ width:5px; }
+  .page-content::-webkit-scrollbar-thumb{ background:var(--accent-soft); border-radius:3px; }
+
+  .corner{
+    position:absolute;
+    opacity:0.5;
+    z-index:2;
+    pointer-events:none;
+  }
+  .corner-tl{ top:10px; left:12px; width:28px; }
+  .corner-tr{ top:10px; right:12px; width:26px; transform:scaleX(-1); }
+
+  .page-footer{
+    position:absolute;
+    bottom:14px;
+    left:0; right:0;
+    text-align:center;
+    font-family:'Cormorant Garamond', serif;
+    font-style:italic;
+    font-size:0.85rem;
+    color:var(--accent-soft);
+    letter-spacing:0.08em;
+  }
+
+  .p-eyebrow{
+    font-family:'Dancing Script', cursive;
+    font-size:1.25rem;
+    color:var(--accent);
+    text-align:center;
+    margin:6px 0 4px;
+  }
+  .p-title{
+    font-family:'Cormorant Garamond', serif;
+    font-weight:600;
+    font-style:italic;
+    font-size:clamp(1.7rem, 6vw, 2.5rem);
+    text-align:center;
+    line-height:1.08;
+    margin:0 0 10px;
+    color:var(--ink);
+  }
+  .p-sub{
+    text-align:center;
+    color:var(--ink-soft);
+    font-size:0.95rem;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    margin:0 0 18px;
+  }
+  .p-wreath{
+    display:block;
+    width:min(230px, 60%);
+    margin:6px auto 14px;
+  }
+  .p-hint{
+    text-align:center;
+    font-family:'Dancing Script', cursive;
+    color:var(--accent-soft);
+    font-size:1.05rem;
+    margin-top:auto;
+  }
+
+  .toc-title{
+    font-family:'Cormorant Garamond', serif;
+    font-style:italic;
+    font-weight:500;
+    text-align:center;
+    color:var(--ink-soft);
+    font-size:1.4rem;
+    letter-spacing:0.04em;
+    margin:4px 0 22px;
+  }
+  .toc-list{
+    list-style:none;
+    counter-reset:poem;
+    padding:0;
+    margin:0;
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+  }
+  .toc-list li{
+    counter-increment:poem;
+    display:flex;
+    align-items:baseline;
+    gap:12px;
+    font-size:1rem;
+  }
+  .toc-list li::before{
+    content: counter(poem, decimal-leading-zero);
+    font-family:'Cormorant Garamond', serif;
+    font-style:italic;
+    color:var(--accent);
+    font-size:0.9rem;
+    min-width:1.5em;
+  }
+  .toc-list .t-page{
+    margin-left:auto;
+    color:var(--accent-soft);
+    font-size:0.85rem;
+    font-style:italic;
+    font-family:'Cormorant Garamond', serif;
+  }
+
+  .poem-num{
+    text-align:center;
+    font-family:'Cormorant Garamond', serif;
+    font-style:italic;
+    color:var(--accent-soft);
+    font-size:0.85rem;
+    letter-spacing:0.15em;
+    text-transform:uppercase;
+    margin:0 0 4px;
+  }
+  .poem-title{
+    font-family:'Cormorant Garamond', serif;
+    font-weight:600;
+    font-style:italic;
+    text-align:center;
+    font-size:clamp(1.3rem, 4.2vw, 1.7rem);
+    color:var(--ink);
+    margin:0 0 20px;
+    line-height:1.2;
+  }
+  .poem-body{
+    font-size:1.02rem;
+    line-height:1.75;
+    color:var(--ink);
+  }
+  .poem-body p{ margin:0 0 1.05em; }
+  .poem-body em{
+    font-family:'Dancing Script', cursive;
+    font-style:normal;
+    font-weight:600;
+    color:var(--ink-soft);
+    font-size:1.22em;
+    line-height:1.5;
+    display:inline-block;
+  }
+
+  .closing-text{
+    text-align:center;
+    font-family:'Cormorant Garamond', serif;
+    font-style:italic;
+    font-size:1.2rem;
+    color:var(--ink-soft);
+    margin-top:14px;
+  }
+
+  .tap-zone{
+    position:absolute;
+    top:0; bottom:0;
+    width:20%;
+    z-index:6;
+    cursor:pointer;
+  }
+  .tap-zone.left{ left:0; }
+  .tap-zone.right{ right:0; }
+
+  .controls{
+    position:relative;
+    z-index:1;
+    display:flex;
+    align-items:center;
+    gap:22px;
+  }
+  .nav-btn{
+    width:42px;
+    height:42px;
+    border-radius:50%;
+    border:1px solid rgba(52,39,74,0.2);
+    background:rgba(255,255,255,0.7);
+    color:var(--ink-soft);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    cursor:pointer;
+    transition:background 0.2s, transform 0.15s, opacity 0.2s;
+    font-size:1.1rem;
+    user-select:none;
+  }
+  .nav-btn:hover:not(:disabled){
+    background:#fff;
+    transform:translateY(-1px);
+  }
+  .nav-btn:disabled{
+    opacity:0.3;
+    cursor:default;
+  }
+  .page-indicator{
+    font-family:'Cormorant Garamond', serif;
+    font-style:italic;
+    color:var(--ink-soft);
+    font-size:1rem;
+    letter-spacing:0.04em;
+    min-width:64px;
+    text-align:center;
+  }
+
+  .hint-text{
+    font-family:'Dancing Script', cursive;
+    font-size:1rem;
+    color:var(--ink-soft);
+    opacity:0.7;
+    text-align:center;
+    z-index:1;
+  }
+</style>
+</head>
+<body>
+
+<div class="sky-decor" aria-hidden="true">
+  <svg viewBox="0 0 40 30"><use href="#moon-icon"/></svg>
+  <svg viewBox="0 0 40 30"><use href="#moon-icon"/></svg>
+  <svg viewBox="0 0 40 30"><use href="#moth-icon"/></svg>
+  <svg viewBox="0 0 40 30"><use href="#moon-icon"/></svg>
+</div>
+
+<!-- shared symbol defs -->
+<svg width="0" height="0" style="position:absolute">
+  <defs>
+    <symbol id="moon-icon" viewBox="0 0 40 30">
+      <g fill="none" stroke="#6B5390" stroke-width="1">
+        <path d="M22 4 C14 4, 8 11, 8 19 C8 27, 14 30, 20 29 C13 27, 10 22, 11 16 C12 9, 18 5, 24 6 Z"
+              fill="#C9B8E8" fill-opacity="0.6" stroke-opacity="0.5"/>
+        <path d="M30 8 l1.4 3.2 3.2 1.4 -3.2 1.4 -1.4 3.2 -1.4 -3.2 -3.2 -1.4 3.2 -1.4 Z"
+              fill="#8B6FB3" fill-opacity="0.55" stroke="none"/>
+        <path d="M33 18 l0.9 2 2 0.9 -2 0.9 -0.9 2 -0.9 -2 -2 -0.9 2 -0.9 Z"
+              fill="#C9B8E8" fill-opacity="0.55" stroke="none"/>
+      </g>
+    </symbol>
+    <symbol id="raindrop-icon" viewBox="0 0 60 60">
+      <g fill="none" stroke="#6B5390" stroke-width="1.1">
+        <path d="M30 10 C36 20, 41 27, 41 34 C41 42, 35.5 47, 30 47 C24.5 47, 19 42, 19 34 C19 27, 24 20, 30 10 Z"
+              fill="#8B6FB3" fill-opacity="0.4"/>
+        <path d="M25 32 C24 37, 26 41, 29 43" stroke="#C9B8E8" stroke-width="1" stroke-opacity="0.7"/>
+        <line x1="14" y1="52" x2="14" y2="58" stroke="#8B6FB3" stroke-width="1.1" stroke-opacity="0.5"/>
+        <line x1="46" y1="50" x2="46" y2="57" stroke="#8B6FB3" stroke-width="1.1" stroke-opacity="0.5"/>
+        <line x1="30" y1="53" x2="30" y2="60" stroke="#8B6FB3" stroke-width="1.1" stroke-opacity="0.5"/>
+      </g>
+    </symbol>
+    <symbol id="moth-icon" viewBox="0 0 40 30">
+      <g fill="none" stroke="#6B5390" stroke-width="1.1" stroke-linecap="round">
+        <path d="M20 6 C13 -1, 1 3, 3 13 C5 21, 14 18, 20 10" fill="#8B6FB3" fill-opacity="0.5"/>
+        <path d="M20 6 C27 -1, 39 3, 37 13 C35 21, 26 18, 20 10" fill="#8B6FB3" fill-opacity="0.5"/>
+        <path d="M20 10 C16 15, 8 20, 10 25 C12 28, 17 25, 20 20" fill="#C9B8E8" fill-opacity="0.45"/>
+        <path d="M20 10 C24 15, 32 20, 30 25 C28 28, 23 25, 20 20" fill="#C9B8E8" fill-opacity="0.45"/>
+        <line x1="20" y1="6" x2="20" y2="22"/>
+        <path d="M18 5 C16 2, 14 1, 12 2" stroke-width="0.8"/>
+        <path d="M22 5 C24 2, 26 1, 28 2" stroke-width="0.8"/>
+      </g>
+    </symbol>
+  </defs>
+</svg>
+
+<div class="stage">
+  <div class="book-wrap">
+    <div class="book" id="book">
+      <div class="sheet" id="sheet">
+        <div class="sheet-face front" id="face-front"></div>
+        <div class="sheet-face back" id="face-back"></div>
+      </div>
+      <div class="tap-zone left" id="zone-left" aria-label="Previous page"></div>
+      <div class="tap-zone right" id="zone-right" aria-label="Next page"></div>
+    </div>
+  </div>
+
+  <div class="controls">
+    <button class="nav-btn" id="btn-prev" aria-label="Previous page">‹</button>
+    <span class="page-indicator" id="page-indicator">1 / 4</span>
+    <button class="nav-btn" id="btn-next" aria-label="Next page">›</button>
+  </div>
+  <p class="hint-text">click the page edges, use ← → , or swipe</p>
+</div>
+
+<!-- ============ PAGE TEMPLATES (content only) ============ -->
+
+<template class="page" id="tpl-1">
+  <svg class="p-wreath" viewBox="0 0 320 90" aria-hidden="true" style="height:auto;">
+    <use href="#raindrop-icon" x="10" y="10" width="45" height="45"/>
+    <use href="#moon-icon" x="130" y="0" width="60" height="45"/>
+    <use href="#raindrop-icon" x="265" y="10" width="45" height="45"/>
+    <path d="M60 40 C120 60, 200 60, 260 40" fill="none" stroke="#8B6FB3" stroke-width="1" stroke-opacity="0.5"/>
+  </svg>
+  <p class="p-eyebrow">a collection of poems</p>
+  <p class="p-title">Every Quiet Night</p>
+  <p class="p-sub">written by Nyra</p>
+  <p class="p-hint">↦ tap to open ↤</p>
+</template>
+
+<template class="page" id="tpl-2">
+  <p class="toc-title">Contents</p>
+  <ol class="toc-list">
+    <li><span>Haru Haru</span><span class="t-page">3</span></li>
+    <li><span>Paper Cuts</span><span class="t-page">4</span></li>
+    <li><span>Déjà Vu</span><span class="t-page">5</span></li>
+    <li><span>Lonely Boy</span><span class="t-page">6</span></li>
+    <li><span>To Be or Not to Be</span><span class="t-page">7</span></li>
+    <li><span>The Long Way Home</span><span class="t-page">8</span></li>
+    <li><span>Loner</span><span class="t-page">9</span></li>
+    <li><span>Bite Me</span><span class="t-page">10</span></li>
+    <li><span>Silent Rage</span><span class="t-page">11</span></li>
+    <li><span>The Echo of Us</span><span class="t-page">12</span></li>
+    <li><span>The Apology I Never Gave</span><span class="t-page">13</span></li>
+    <li><span>A Cat Beneath the Stars</span><span class="t-page">14</span></li>
+    <li><span>The Heart I Couldn't Show</span><span class="t-page">15</span></li>
+    <li><span>Addicted to Your Echo</span><span class="t-page">16</span></li>
+    <li><span>The Rain That Couldn't Cry</span><span class="t-page">17</span></li>
+  </ol>
+</template>
+
+<template class="page" id="tpl-3">
+  <p class="poem-num">I.</p>
+  <p class="poem-title">Haru Haru</p>
+  <div class="poem-body">
+    <p>Day by day,</p>
+    <p>I learn<br>what it means<br>to live without you.</p>
+    <p>The mornings still arrive,<br>the sun still rises,<br>the world keeps breathing—</p>
+    <p>but none of it<br>feels the same.</p>
+    <p>I replay our memories<br>like old films,<br>hoping this time<br>they'll end differently.</p>
+    <p>I keep reaching<br>for a hand<br>that isn't there.</p>
+    <p>If loving you<br>meant losing you,</p>
+    <p>I would still<br>choose you.</p>
+    <p>Again.</p>
+    <p>And again.</p>
+    <p>Even if the ending<br>was written<br>long before we met.</p>
+    <p>Some people<br>are only meant<br>to change your life,</p>
+    <p>not stay in it.</p>
+    <p>So I'll smile<br>when they ask<br>if I'm okay.</p>
+    <p>I'll tell them<br>I've moved on.</p>
+    <p>I'll tell them<br>you're just<br>a memory.</p>
+    <p>But every quiet night<br>knows the truth.</p>
+    <p>Every heartbeat<br>still whispers<br>your name.</p>
+    <p>And if we never<br>find each other again,</p>
+    <p>I hope another version of us<br>exists somewhere—</p>
+    <p>where goodbyes<br>don't exist,</p>
+    <p>where promises<br>don't break,</p>
+    <p>and where I never<br>have to<br>watch you<br>walk away.</p>
+    <p>Until then,</p>
+    <p>I'll love you<br>a little more</p>
+    <p>every day.</p>
+  </div>
+</template>
+
+<template class="page" id="tpl-4">
+  <p class="poem-num">II.</p>
+  <p class="poem-title">Paper Cuts</p>
+  <div class="poem-body">
+    <p>Even though we're apart,</p>
+    <p>I still find pieces of you<br>hidden in ordinary days.</p>
+    <p>A song I wasn't looking for.<br>A familiar scent in the crowd.<br>A quiet evening<br>that suddenly feels too loud<br>because you're not here.</p>
+    <p>Distance is strange.</p>
+    <p>It doesn't erase love—<br>it folds it,<br>creases it,<br>until every memory<br>becomes a paper cut.</p>
+    <p>Too small for anyone else to notice.</p>
+    <p>Too deep for me to ignore.</p>
+    <p>I smile,<br>I laugh,<br>I keep moving forward,<br>yet every little reminder<br>opens the same wound<br>all over again.</p>
+    <p>People say<br>time heals everything.</p>
+    <p>Maybe.</p>
+    <p>But some names<br>are written so gently<br>across the heart<br>that even after they're gone,<br>the imprint remains.</p>
+    <p>I don't need the world<br>to understand us.</p>
+    <p>I only need you to know</p>
+    <p>that every sunrise,<br>every midnight,<br>every silent wish,</p>
+    <p>still finds its way<br>back to you.</p>
+    <p>Even though we're apart,</p>
+    <p>my heart never learned<br>how to leave.</p>
+    <p>So I'll carry these tiny cuts<br>like folded letters<br>I've never had the courage<br>to throw away.</p>
+    <p>Because love isn't always<br>about holding someone's hand.</p>
+    <p>Sometimes,</p>
+    <p>it's about loving them<br>through every mile,<br>every season,<br>every goodbye—</p>
+    <p>until life<br>lets our paths<br>cross again.</p>
+  </div>
+</template>
+
+<template class="page" id="tpl-5">
+  <p class="poem-num">III.</p>
+  <p class="poem-title">Déjà Vu</p>
+  <div class="poem-body">
+    <p>I've met you before.</p>
+    <p>Not here,<br>not now—</p>
+    <p>but somewhere<br>between forgotten dreams<br>and lives I no longer remember.</p>
+    <p>Because the moment<br>our eyes met,</p>
+    <p>my heart didn't ask<br>who you were.</p>
+    <p>It simply whispered,</p>
+    <p><em>"There you are."</em></p>
+    <p>Maybe that's why<br>being with you<br>feels so familiar.</p>
+    <p>Like returning home<br>after wandering<br>through endless skies.</p>
+    <p>Like finding<br>the missing page<br>of a story<br>my soul has been trying<br>to finish.</p>
+    <p>Sometimes I wonder</p>
+    <p>if fate keeps<br>rewriting our ending,</p>
+    <p>only to watch us<br>find each other<br>all over again.</p>
+    <p>Different names.</p>
+    <p>Different lives.</p>
+    <p>The same heartbeat.</p>
+    <p>The same longing.</p>
+    <p>No matter how many worlds<br>stand between us,</p>
+    <p>my heart recognizes yours.</p>
+    <p>Again.</p>
+    <p>And again.</p>
+    <p>Like a memory<br>I was never meant<br>to forget.</p>
+    <p>If this is another<br>déjà vu,</p>
+    <p>then let me live it<br>a thousand more times.</p>
+    <p>Because I'd rather<br>fall in love with you</p>
+    <p>in every lifetime—</p>
+    <p>than spend<br>even one</p>
+    <p>where I've never<br>known your name.</p>
+  </div>
+</template>
+
+<template class="page" id="tpl-6">
+  <p class="poem-num">IV.</p>
+  <p class="poem-title">Lonely Boy</p>
+  <div class="poem-body">
+    <p>There goes the lonely boy,<br>smiling just enough<br>to convince the world<br>he's doing fine.</p>
+    <p>No one notices<br>how heavy silence becomes<br>when the room empties,<br>or how every laugh<br>is followed<br>by another sleepless night.</p>
+    <p>He carries storms<br>behind gentle eyes,</p>
+    <p>and every<br>"I'm okay"<br>is another lie<br>he's learned<br>to tell so well.</p>
+    <p>He watches people<br>find a place<br>to call home<br>in someone else's heart,<br>while he keeps wondering<br>what it feels like<br>to be chosen.</p>
+    <p>To be someone's<br>first thought.</p>
+    <p>Someone's safe place.</p>
+    <p>Someone's reason<br>to stay.</p>
+    <p>He isn't asking<br>for the whole world.</p>
+    <p>Just one person<br>who will notice<br>when his smile fades,<br>who will hold his hand<br>without letting go,<br>who will look at him<br>and say,</p>
+    <p><em>"You don't have to<br>carry everything alone."</em></p>
+    <p>Until then,</p>
+    <p>he'll keep walking,</p>
+    <p>a lonely boy<br>with a heart<br>still brave enough<br>to believe</p>
+    <p>that one day,</p>
+    <p>someone will call it</p>
+    <p>home.</p>
+  </div>
+</template>
+
+<template class="page" id="tpl-7">
+  <p class="poem-num">V.</p>
+  <p class="poem-title">To Be or Not to Be</p>
+  <div class="poem-body">
+    <p>To stay,</p>
+    <p>or to disappear.</p>
+    <p>To love you,</p>
+    <p>or to save what's left of me.</p>
+    <p>I've stood<br>between those two choices<br>for so long,</p>
+    <p>I no longer know<br>which one hurts more.</p>
+    <p>You became<br>the question<br>I could never answer.</p>
+    <p>Every goodbye<br>pulls me back.</p>
+    <p>Every hello<br>breaks me again.</p>
+    <p>If I let you go,</p>
+    <p>will I finally breathe?</p>
+    <p>Or will I spend<br>the rest of my life</p>
+    <p>searching for the piece<br>of my soul<br>that left with you?</p>
+    <p>Love isn't always<br>a fairytale.</p>
+    <p>Sometimes,</p>
+    <p>it's a battlefield<br>where neither heart wins.</p>
+    <p>So here I am,</p>
+    <p>standing at the edge<br>of everything we were,</p>
+    <p>asking the same question<br>the stars refuse to answer.</p>
+    <p>To be—</p>
+    <p>without you.</p>
+    <p>Or not to be—</p>
+    <p>because loving you<br>became the only way<br>I knew how to exist.</p>
+    <p>Maybe there is<br>no right choice.</p>
+    <p>Maybe love<br>was never meant<br>to be easy.</p>
+    <p>Maybe all I can do</p>
+    <p>is close my eyes,</p>
+    <p>take one final step,</p>
+    <p>and hope</p>
+    <p>that whatever waits<br>on the other side</p>
+    <p>still remembers</p>
+    <p>our names.</p>
+  </div>
+</template>
+
+<template class="page" id="tpl-8">
+  <p class="poem-num">VI.</p>
+  <p class="poem-title">The Long Way Home</p>
+  <div class="poem-body">
+    <p>The moon has always known</p>
+    <p>how heavy<br>a lonely heart can become.</p>
+    <p>It watches<br>without speaking,</p>
+    <p>listening to wishes<br>too fragile<br>for daylight.</p>
+    <p>So I leave<br>another piece of myself<br>among the stars,</p>
+    <p>hoping the night<br>will carry it<br>to you.</p>
+    <p>Some roads<br>are meant to be walked alone.</p>
+    <p>Not because<br>we're forgotten,</p>
+    <p>but because<br>every journey<br>asks us<br>to become someone new.</p>
+    <p>I've stumbled.</p>
+    <p>I've fallen.</p>
+    <p>I've wondered<br>if anyone<br>was waiting<br>at the end<br>of this endless path.</p>
+    <p>Then the wind<br>whispered softly,</p>
+    <p><em>"Keep walking."</em></p>
+    <p>Not every goodbye<br>is forever.</p>
+    <p>Not every silence<br>means you're alone.</p>
+    <p>Even if<br>the mountains<br>stand between us,</p>
+    <p>the same sky<br>covers us both.</p>
+    <p>So when you<br>look up tonight,</p>
+    <p>know that somewhere,</p>
+    <p>under this endless moon,</p>
+    <p>I'm doing the same—</p>
+    <p>trusting that every step,<br>every scar,<br>every lonely night</p>
+    <p>is leading us</p>
+    <p>toward the place</p>
+    <p>where we no longer<br>have to say</p>
+    <p>"See you again."</p>
+    <p>Only,</p>
+    <p>"I'm home."</p>
+  </div>
+</template>
+
+<template class="page" id="tpl-9">
+  <p class="poem-num">VII.</p>
+  <p class="poem-title">Loner</p>
+  <div class="poem-body">
+    <p>The room feels bigger<br>when you're not here.</p>
+    <p>The walls remember<br>the sound of your laughter,<br>but I only hear<br>the echo.</p>
+    <p>I walk through the same streets,<br>pass the same places,<br>but everything feels unfamiliar—</p>
+    <p>like the world moved forward<br>and left me behind.</p>
+    <p>People ask me,</p>
+    <p>"Are you okay?"</p>
+    <p>And I smile.</p>
+    <p>I say yes.</p>
+    <p>Because sometimes<br>the hardest pain<br>is the one you learn<br>to hide.</p>
+    <p>I still reach for my phone<br>when something reminds me of you.</p>
+    <p>I still turn around<br>when I hear a familiar voice.</p>
+    <p>I still look for you<br>in places<br>I know you won't be.</p>
+    <p>Maybe that's what hurts the most.</p>
+    <p>Not losing you once,</p>
+    <p>but losing you<br>in every little moment<br>after.</p>
+    <p>The days keep passing.</p>
+    <p>The nights keep coming.</p>
+    <p>Everyone finds someone<br>to walk beside them,</p>
+    <p>while I keep walking alone,</p>
+    <p>carrying memories<br>that no longer have a place to go.</p>
+    <p>I never wanted<br>to become a loner.</p>
+    <p>I just became someone<br>who loved too deeply,</p>
+    <p>and now<br>has to learn</p>
+    <p>how to live</p>
+    <p>with the empty space</p>
+    <p>you left behind.</p>
+  </div>
+</template>
+
+<template class="page" id="tpl-10">
+  <p class="poem-num">VIII.</p>
+  <p class="poem-title">Bite Me</p>
+  <div class="poem-body">
+    <p>Come closer.</p>
+    <p>Not because I need saving,</p>
+    <p>but because my heart<br>already knows your name.</p>
+    <p>There is something about you</p>
+    <p>that feels dangerous<br>and familiar at the same time—</p>
+    <p>like a secret<br>I was never meant to hide.</p>
+    <p>I tried to run.</p>
+    <p>I tried to convince myself<br>that distance would make me forget.</p>
+    <p>But every road I take<br>somehow leads back to you.</p>
+    <p>You are the shadow<br>that follows my dreams,</p>
+    <p>the melody<br>I hear in the silence,</p>
+    <p>the missing piece<br>I keep searching for<br>without knowing why.</p>
+    <p>Maybe we were never meant<br>to be ordinary.</p>
+    <p>Maybe our story<br>was written in the spaces<br>between desire and destiny.</p>
+    <p>So stay a little longer.</p>
+    <p>Let the world disappear.</p>
+    <p>Let the night remember us.</p>
+    <p>Because even when tomorrow comes,</p>
+    <p>even when time changes everything,</p>
+    <p>there will always be a part of me</p>
+    <p>that reaches for you.</p>
+    <p>Not out of weakness.</p>
+    <p>Not out of fear.</p>
+    <p>But because some hearts</p>
+    <p>don't just meet—</p>
+    <p>they recognize each other.</p>
+  </div>
+</template>
+
+<template class="page" id="tpl-11">
+  <p class="poem-num">IX.</p>
+  <p class="poem-title">Silent Rage</p>
+  <div class="poem-body">
+    <p>I'm tired.</p>
+    <p>Not of the world,</p>
+    <p>but of the noise it creates.</p>
+    <p>The voices that judge<br>without knowing the story.</p>
+    <p>The words thrown like weapons<br>from people who never learned<br>how much they can hurt.</p>
+    <p>They speak so easily.</p>
+    <p>They break so casually.</p>
+    <p>Then they walk away<br>as if nothing happened.</p>
+    <p>But I remember.</p>
+    <p>I remember every scar<br>left by careless words.</p>
+    <p>Every moment<br>I had to pretend<br>I wasn't affected.</p>
+    <p>They tell me to ignore it.</p>
+    <p>They tell me to stay calm.</p>
+    <p>But how do you stay silent<br>when your heart is screaming?</p>
+    <p>How do you smile<br>when anger burns<br>under your skin?</p>
+    <p>Sometimes I want to shout.</p>
+    <p>Sometimes I want the whole world<br>to feel the weight<br>of what they caused.</p>
+    <p>But I know—</p>
+    <p>anger is a fire.</p>
+    <p>It can warm you,</p>
+    <p>or it can consume you.</p>
+    <p>So I'll turn my frustration<br>into strength.</p>
+    <p>I'll let my voice become louder<br>than their hatred.</p>
+    <p>I'll keep walking forward,</p>
+    <p>not because it didn't hurt,</p>
+    <p>but because I refuse<br>to let their words</p>
+    <p>become my ending.</p>
+  </div>
+</template>
+
+<template class="page" id="tpl-12">
+  <p class="poem-num">X.</p>
+  <p class="poem-title">The Echo of Us</p>
+  <div class="poem-body">
+    <p>The rain falls quietly tonight,</p>
+    <p>as if even the sky<br>is afraid to speak.</p>
+    <p>I walk through memories<br>that no longer belong to me,</p>
+    <p>touching the echoes<br>of days we used to share.</p>
+    <p>Some names are like old songs—</p>
+    <p>you don't hear them anymore,</p>
+    <p>but your heart still remembers<br>every note.</p>
+    <p>I thought time would wash away<br>the traces of you.</p>
+    <p>But some feelings<br>are not written on the surface.</p>
+    <p>They are carved deeper,</p>
+    <p>where no storm can reach.</p>
+    <p>I keep moving forward,</p>
+    <p>yet a part of me remains</p>
+    <p>standing in the place<br>where we said goodbye.</p>
+    <p>Maybe we were never meant<br>to last forever.</p>
+    <p>Maybe we were only a chapter<br>written beautifully<br>before the ending.</p>
+    <p>But even now,</p>
+    <p>when the night is silent,</p>
+    <p>I still wish you happiness.</p>
+    <p>Even if it is a happiness<br>I cannot be part of.</p>
+    <p>Because loving someone<br>does not always mean holding on.</p>
+    <p>Sometimes,</p>
+    <p>it means letting the wind carry them away</p>
+    <p>while you quietly whisper—</p>
+    <p><em>"Thank you<br><br>for once being my home."</em></p>
+  </div>
+</template>
+
+<template class="page" id="tpl-13">
+  <p class="poem-num">XI.</p>
+  <p class="poem-title">The Apology I Never Gave</p>
+  <div class="poem-body">
+    <p>I'm sorry.</p>
+    <p>Two words<br>that arrived too late.</p>
+    <p>I kept them hidden<br>behind my pride,</p>
+    <p>behind the silence<br>that grew between us.</p>
+    <p>I wonder sometimes—</p>
+    <p>if I had reached for your hand sooner,</p>
+    <p>if I had said what I truly felt,</p>
+    <p>would you still be here?</p>
+    <p>The days continue without you,</p>
+    <p>but some moments<br>still stop me in my tracks.</p>
+    <p>A familiar song.</p>
+    <p>A quiet street.</p>
+    <p>A memory of your smile.</p>
+    <p>Little pieces of the past<br>that remind me</p>
+    <p>of everything I failed to protect.</p>
+    <p>I never meant to hurt you.</p>
+    <p>I never meant for my absence<br>to feel like abandonment.</p>
+    <p>But intentions don't erase pain,</p>
+    <p>and apologies don't always repair<br>what has already broken.</p>
+    <p>So if these words<br>ever find their way to you,</p>
+    <p>I hope you know—</p>
+    <p>I was grateful for you.</p>
+    <p>I was happy with you.</p>
+    <p>And even though I couldn't say it<br>when I had the chance,</p>
+    <p>you were someone<br>I never wanted to lose.</p>
+    <p>Maybe in another time,</p>
+    <p>another life,</p>
+    <p>we would meet again</p>
+    <p>with softer hearts</p>
+    <p>and fewer regrets.</p>
+    <p>Until then,</p>
+    <p>I'll carry your memory quietly,</p>
+    <p>and whisper the words</p>
+    <p>I should have said before—</p>
+    <p>I'm sorry.</p>
+  </div>
+</template>
+
+<template class="page" id="tpl-14">
+  <p class="poem-num">XII.</p>
+  <p class="poem-title">A Cat Beneath the Stars</p>
+  <div class="poem-body">
+    <p>Somewhere between the galaxies,</p>
+    <p>there is a little heart</p>
+    <p>floating alone.</p>
+    <p>Not lost,</p>
+    <p>just searching</p>
+    <p>for a place</p>
+    <p>where it can finally rest.</p>
+    <p>The universe is so wide,</p>
+    <p>yet loneliness</p>
+    <p>can still feel</p>
+    <p>like the smallest room.</p>
+    <p>I chase after stars</p>
+    <p>that disappear by morning.</p>
+    <p>I hold onto dreams</p>
+    <p>that slip through my paws.</p>
+    <p>I wonder if the moon</p>
+    <p>ever feels lonely too,</p>
+    <p>watching everyone leave</p>
+    <p>while it stays behind.</p>
+    <p>Maybe I'm just a small creature</p>
+    <p>in an endless sky,</p>
+    <p>trying to understand</p>
+    <p>why I feel everything</p>
+    <p>so deeply.</p>
+    <p>But even in the darkest ocean</p>
+    <p>of endless space,</p>
+    <p>there is still a light</p>
+    <p>waiting to be found.</p>
+    <p>A gentle voice.</p>
+    <p>A warm hand.</p>
+    <p>A place that says,</p>
+    <p><em>"You don't have to wander anymore."</em></p>
+    <p>So I'll keep swimming</p>
+    <p>through this universe,</p>
+    <p>through the storms,</p>
+    <p>through the silence,</p>
+    <p>until I find my little corner</p>
+    <p>among the stars.</p>
+    <p>And when I look back,</p>
+    <p>I'll know—</p>
+    <p>I was never drowning.</p>
+    <p>I was only learning</p>
+    <p>how to find my way home.</p>
+  </div>
+</template>
+
+<template class="page" id="tpl-15">
+  <p class="poem-num">XIII.</p>
+  <p class="poem-title">The Heart I Couldn't Show</p>
+  <div class="poem-body">
+    <p>I wish I could say it.</p>
+    <p>All the words<br>I kept buried inside.</p>
+    <p>The feelings I hid<br>behind a smile,</p>
+    <p>the tears I swallowed<br>when nobody was looking.</p>
+    <p>People say,</p>
+    <p><em>"Just open your heart."</em></p>
+    <p>But what if my heart<br>doesn't know how to speak?</p>
+    <p>What if every time<br>I try to explain,</p>
+    <p>my voice disappears<br>before the words arrive?</p>
+    <p>I never wanted<br>to seem distant.</p>
+    <p>I never wanted<br>to push you away.</p>
+    <p>I just didn't know<br>how to ask for comfort</p>
+    <p>without feeling like<br>a burden.</p>
+    <p>So I learned to smile.</p>
+    <p>I learned to say,</p>
+    <p>"I'm fine."</p>
+    <p>I learned to hide<br>the storms inside me.</p>
+    <p>But sometimes,</p>
+    <p>I wish someone would notice—</p>
+    <p>not the smile,</p>
+    <p>not the mask,</p>
+    <p>but the quiet part of me<br>that is begging to be understood.</p>
+    <p>I don't need you<br>to fix everything.</p>
+    <p>I don't need perfect words.</p>
+    <p>I only want someone<br>to sit beside me</p>
+    <p>and say,</p>
+    <p><em>"I know you're hurting.<br><br>You don't have to hide anymore."</em></p>
+    <p>Because even a silent heart</p>
+    <p>is still a heart.</p>
+    <p>And even the quietest soul</p>
+    <p>still wishes</p>
+    <p>to be heard.</p>
+  </div>
+</template>
+
+<template class="page" id="tpl-16">
+  <p class="poem-num">XIV.</p>
+  <p class="poem-title">Addicted to Your Echo</p>
+  <div class="poem-body">
+    <p>I tried to leave.</p>
+    <p>I really did.</p>
+    <p>I told myself<br>that I could walk away,</p>
+    <p>that time would wash away<br>the memories of you.</p>
+    <p>But somehow,</p>
+    <p>every road I take<br>leads me back.</p>
+    <p>Your voice is a melody<br>I can't forget.</p>
+    <p>Your smile is a picture<br>my mind keeps replaying.</p>
+    <p>I don't know when it happened—</p>
+    <p>when you became<br>the first thought in my morning</p>
+    <p>and the last name<br>my heart whispers at night.</p>
+    <p>Maybe I loved you too much.</p>
+    <p>Maybe I let you become<br>a part of me</p>
+    <p>that I no longer know<br>how to live without.</p>
+    <p>You are the storm<br>I run toward,</p>
+    <p>the fire I reach for,</p>
+    <p>the dream I don't want<br>to wake from.</p>
+    <p>Everyone tells me<br>to let go.</p>
+    <p>They say some feelings<br>are meant to fade.</p>
+    <p>But how do I forget<br>something that feels<br>like it was written into me?</p>
+    <p>So here I am,</p>
+    <p>caught between<br>wanting to escape</p>
+    <p>and wanting to stay.</p>
+    <p>Because loving you<br>is the sweetest danger<br>I've ever known.</p>
+    <p>And even if my heart<br>gets lost searching for you,</p>
+    <p>a part of me</p>
+    <p>will always wonder—</p>
+    <p>what if I never stopped<br>falling?</p>
+  </div>
+</template>
+
+<template class="page" id="tpl-17">
+  <p class="poem-num">XV.</p>
+  <p class="poem-title">The Rain That Couldn't Cry</p>
+  <div class="poem-body">
+    <p>The sky looks beautiful today,</p>
+    <p>but I know better.</p>
+    <p>Some storms<br>do not come with thunder.</p>
+    <p>Some storms<br>live quietly inside the heart.</p>
+    <p>I keep searching<br>for the right words,</p>
+    <p>but every feeling<br>turns into silence<br>before it reaches my lips.</p>
+    <p>I want to say,</p>
+    <p>"I'm tired."</p>
+    <p>I want to say,</p>
+    <p>"I need someone."</p>
+    <p>But my voice disappears,</p>
+    <p>and I become someone<br>who smiles through the rain.</p>
+    <p>People see the calm.</p>
+    <p>They never see<br>the waves crashing underneath.</p>
+    <p>They never hear<br>the questions I ask myself<br>when the night becomes too long.</p>
+    <p>Am I too much?</p>
+    <p>Am I not enough?</p>
+    <p>Why does wanting to be understood<br>feel like asking for the impossible?</p>
+    <p>I keep giving pieces of myself<br>until there is almost nothing left.</p>
+    <p>And still,</p>
+    <p>I say,</p>
+    <p>"I'm okay."</p>
+    <p>Maybe I'm just a cloud<br>holding too much water,</p>
+    <p>waiting for the moment<br>I can finally let it fall.</p>
+    <p>So if one day<br>you see my tears,</p>
+    <p>please don't ask me<br>why I am crying.</p>
+    <p>Just stay.</p>
+    <p>Because sometimes,</p>
+    <p>a heart doesn't need answers.</p>
+    <p>It only needs someone<br>who won't leave<br>when the rain begins.</p>
+  </div>
+</template>
+
+<template class="page" id="tpl-18">
+  <svg class="p-wreath" viewBox="0 0 260 70" aria-hidden="true" style="height:auto;">
+    <use href="#raindrop-icon" x="0" y="5" width="42" height="42"/>
+    <use href="#moon-icon" x="100" y="0" width="60" height="42"/>
+    <use href="#raindrop-icon" x="215" y="5" width="42" height="42"/>
+  </svg>
+  <p class="closing-text">end of this collection</p>
+  <p class="p-hint" style="margin-top:16px;">tap ← to read again</p>
+</template>
+
+<script>
+(function(){
+  const templates = Array.from(document.querySelectorAll('template.page'));
+  const pages = templates.map(t => t.innerHTML.trim());
+  const total = pages.length;
+  let current = 0;
+  let animating = false;
+
+  const sheet = document.getElementById('sheet');
+  const faceFront = document.getElementById('face-front');
+  const faceBack = document.getElementById('face-back');
+  const indicator = document.getElementById('page-indicator');
+  const btnPrev = document.getElementById('btn-prev');
+  const btnNext = document.getElementById('btn-next');
+  const zoneLeft = document.getElementById('zone-left');
+  const zoneRight = document.getElementById('zone-right');
+
+  function wrap(idx){
+    const showCorners = idx !== 0 && idx !== total - 1;
+    const cornerHtml = showCorners
+      ? '<svg class="corner corner-tl" viewBox="0 0 60 60"><use href="#raindrop-icon"/></svg>' +
+        '<svg class="corner corner-tr" viewBox="0 0 40 30"><use href="#moon-icon"/></svg>'
+      : '';
+    const footer = (idx === 0 || idx === total - 1) ? '' :
+      '<div class="page-footer">' + (idx + 1) + ' / ' + total + '</div>';
+    return '<div class="page-frame">' + cornerHtml +
+           '<div class="page-content">' + pages[idx] + '</div>' +
+           footer + '</div>';
+  }
+
+  function updateControls(){
+    indicator.textContent = (current + 1) + ' / ' + total;
+    btnPrev.disabled = current === 0;
+    btnNext.disabled = current === total - 1;
+  }
+
+  function init(){
+    faceFront.innerHTML = wrap(current);
+    updateControls();
+  }
+
+  function go(direction){
+    if(animating) return;
+    const nextIndex = current + direction;
+    if(nextIndex < 0 || nextIndex >= total) return;
+    animating = true;
+
+    faceBack.innerHTML = wrap(nextIndex);
+    faceBack.style.transform = direction === 1 ? 'rotateY(180deg)' : 'rotateY(-180deg)';
+
+    sheet.style.transition = 'none';
+    sheet.style.transform = 'rotateY(0deg)';
+    void sheet.offsetWidth;
+    sheet.style.transition = 'transform 0.85s cubic-bezier(.45,.05,.35,1)';
+
+    requestAnimationFrame(function(){
+      sheet.style.transform = direction === 1 ? 'rotateY(-180deg)' : 'rotateY(180deg)';
+    });
+
+    function onEnd(e){
+      if(e.propertyName !== 'transform') return;
+      sheet.removeEventListener('transitionend', onEnd);
+      current = nextIndex;
+      faceFront.innerHTML = wrap(current);
+      sheet.style.transition = 'none';
+      sheet.style.transform = 'rotateY(0deg)';
+      void sheet.offsetWidth;
+      updateControls();
+      animating = false;
+    }
+    sheet.addEventListener('transitionend', onEnd);
+  }
+
+  btnPrev.addEventListener('click', function(){ go(-1); });
+  btnNext.addEventListener('click', function(){ go(1); });
+  zoneLeft.addEventListener('click', function(){ go(-1); });
+  zoneRight.addEventListener('click', function(){ go(1); });
+
+  document.addEventListener('keydown', function(e){
+    if(e.key === 'ArrowRight') go(1);
+    if(e.key === 'ArrowLeft') go(-1);
+  });
+
+  let touchStartX = null;
+  document.getElementById('book').addEventListener('touchstart', function(e){
+    touchStartX = e.changedTouches[0].clientX;
+  }, {passive:true});
+  document.getElementById('book').addEventListener('touchend', function(e){
+    if(touchStartX === null) return;
+    const dx = e.changedTouches[0].clientX - touchStartX;
+    if(Math.abs(dx) > 50){
+      go(dx < 0 ? 1 : -1);
+    }
+    touchStartX = null;
+  }, {passive:true});
+
+  init();
+})();
+</script>
+
+</body>
+</html>
