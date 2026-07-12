@@ -3,21 +3,20 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Anything and Everything — A Collection</title>
+<title>Every Quiet Night — A Collection</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Dancing+Script:wght@500;600;700&display=swap" rel="stylesheet">
 <style>
   :root{
-    --sky:        #DCE8F5;
-    --sky-deep:   #B9D0E8;
-    --night:      #1B2A4A;
-    --ink:        #1B2A4A;
-    --ink-soft:   #3A5A8C;
-    --rose:       #B4778A;
-    --rose-soft:  #D9AEBB;
-    --gold:       #C9A961;
-    --paper:      #FBFCFE;
-    --paper-shade:#EEF3F9;
+    --sky:        #E7E1F4;
+    --sky-deep:   #D2C4EA;
+    --night:      #2E2447;
+    --ink:        #34274A;
+    --ink-soft:   #6B5390;
+    --accent:     #8B6FB3;
+    --accent-soft:#C9B8E8;
+    --gold:       #B39BD6;
+    --paper:      #FBFAFD;
   }
 
   *{box-sizing:border-box;}
@@ -26,7 +25,7 @@
     margin:0;
     min-height:100vh;
     background:
-      radial-gradient(ellipse 900px 700px at 50% -10%, var(--sky-deep) 0%, var(--sky) 55%, #CBDDF0 100%);
+      radial-gradient(ellipse 900px 700px at 50% -10%, #B39BD6 0%, #9C82C4 45%, #6E5799 100%);
     color:var(--ink);
     font-family:'EB Garamond', serif;
     -webkit-font-smoothing:antialiased;
@@ -38,7 +37,7 @@
     .sky-decor svg{ animation:none !important; }
   }
 
-  /* ---------- floating background butterflies ---------- */
+  /* ---------- floating background moths ---------- */
   .sky-decor{
     position:fixed;
     inset:0;
@@ -48,17 +47,17 @@
   }
   .sky-decor svg{
     position:absolute;
-    opacity:0.3;
-    animation:drift 22s ease-in-out infinite;
+    opacity:0.45;
+    animation:drift 24s ease-in-out infinite;
   }
-  .sky-decor svg:nth-child(1){ top:8%;  left:5%;  width:40px; animation-duration:19s; }
-  .sky-decor svg:nth-child(2){ top:18%; right:7%; width:30px; animation-duration:26s; animation-delay:-4s; }
-  .sky-decor svg:nth-child(3){ top:78%; left:6%;  width:28px; animation-duration:21s; animation-delay:-9s; }
-  .sky-decor svg:nth-child(4){ top:70%; right:6%; width:34px; animation-duration:24s; animation-delay:-13s; }
+  .sky-decor svg:nth-child(1){ top:9%;  left:5%;  width:38px; animation-duration:20s; }
+  .sky-decor svg:nth-child(2){ top:20%; right:8%; width:30px; animation-duration:27s; animation-delay:-4s; }
+  .sky-decor svg:nth-child(3){ top:76%; left:6%;  width:26px; animation-duration:22s; animation-delay:-9s; }
+  .sky-decor svg:nth-child(4){ top:68%; right:7%; width:32px; animation-duration:25s; animation-delay:-13s; }
 
   @keyframes drift{
-    0%,100%{ transform:translate(0,0) rotate(-4deg); }
-    50%{ transform:translate(-10px,-18px) rotate(6deg); }
+    0%,100%{ transform:translate(0,0) rotate(-3deg); }
+    50%{ transform:translate(-8px,-16px) rotate(5deg); }
   }
 
   /* ---------- stage ---------- */
@@ -81,13 +80,12 @@
     perspective:2200px;
   }
 
-  /* stacked page-edge illusion behind the book */
   .book-wrap::before{
     content:"";
     position:absolute;
     inset:6px -6px -10px 4px;
-    background:linear-gradient(90deg, transparent 0%, transparent 92%, rgba(27,42,74,0.08) 92%, rgba(27,42,74,0.08) 100%),
-               repeating-linear-gradient(180deg, rgba(27,42,74,0.05) 0 1px, transparent 1px 4px);
+    background:linear-gradient(90deg, transparent 0%, transparent 92%, rgba(52,39,74,0.10) 92%, rgba(52,39,74,0.10) 100%),
+               repeating-linear-gradient(180deg, rgba(52,39,74,0.06) 0 1px, transparent 1px 4px);
     border-radius:10px;
     z-index:0;
   }
@@ -99,18 +97,17 @@
     border-radius:10px;
     box-shadow:
       0 2px 0 rgba(255,255,255,0.6) inset,
-      0 30px 60px -20px rgba(27,42,74,0.35),
-      0 10px 25px -10px rgba(27,42,74,0.25);
+      0 30px 60px -20px rgba(52,39,74,0.38),
+      0 10px 25px -10px rgba(52,39,74,0.28);
     background:var(--paper);
   }
 
-  /* spine shadow along left edge for "open book" feel */
   .book::after{
     content:"";
     position:absolute;
     top:0; bottom:0; left:0;
     width:36px;
-    background:linear-gradient(90deg, rgba(27,42,74,0.14), transparent);
+    background:linear-gradient(90deg, rgba(52,39,74,0.16), transparent);
     z-index:5;
     pointer-events:none;
     border-radius:10px 0 0 10px;
@@ -138,7 +135,6 @@
     transform:rotateY(180deg);
   }
 
-  /* ---------- page frame (injected per page) ---------- */
   .page-frame{
     position:relative;
     width:100%;
@@ -153,18 +149,18 @@
     overflow-y:auto;
     padding-right:6px;
     scrollbar-width:thin;
-    scrollbar-color:var(--rose-soft) transparent;
+    scrollbar-color:var(--accent-soft) transparent;
   }
   .page-content::-webkit-scrollbar{ width:5px; }
-  .page-content::-webkit-scrollbar-thumb{ background:var(--rose-soft); border-radius:3px; }
+  .page-content::-webkit-scrollbar-thumb{ background:var(--accent-soft); border-radius:3px; }
 
   .corner{
     position:absolute;
-    opacity:0.55;
+    opacity:0.5;
     z-index:2;
     pointer-events:none;
   }
-  .corner-tl{ top:10px; left:12px; width:30px; }
+  .corner-tl{ top:10px; left:12px; width:28px; }
   .corner-tr{ top:10px; right:12px; width:26px; transform:scaleX(-1); }
 
   .page-footer{
@@ -175,15 +171,14 @@
     font-family:'Cormorant Garamond', serif;
     font-style:italic;
     font-size:0.85rem;
-    color:var(--rose-soft);
+    color:var(--accent-soft);
     letter-spacing:0.08em;
   }
 
-  /* ---------- title / toc / poem / closing content styles ---------- */
   .p-eyebrow{
     font-family:'Dancing Script', cursive;
     font-size:1.25rem;
-    color:var(--rose);
+    color:var(--accent);
     text-align:center;
     margin:6px 0 4px;
   }
@@ -213,7 +208,7 @@
   .p-hint{
     text-align:center;
     font-family:'Dancing Script', cursive;
-    color:var(--rose-soft);
+    color:var(--accent-soft);
     font-size:1.05rem;
     margin-top:auto;
   }
@@ -248,13 +243,13 @@
     content: counter(poem, decimal-leading-zero);
     font-family:'Cormorant Garamond', serif;
     font-style:italic;
-    color:var(--rose);
+    color:var(--accent);
     font-size:0.9rem;
     min-width:1.5em;
   }
   .toc-list .t-page{
     margin-left:auto;
-    color:var(--rose-soft);
+    color:var(--accent-soft);
     font-size:0.85rem;
     font-style:italic;
     font-family:'Cormorant Garamond', serif;
@@ -264,7 +259,7 @@
     text-align:center;
     font-family:'Cormorant Garamond', serif;
     font-style:italic;
-    color:var(--rose-soft);
+    color:var(--accent-soft);
     font-size:0.85rem;
     letter-spacing:0.15em;
     text-transform:uppercase;
@@ -305,7 +300,6 @@
     margin-top:14px;
   }
 
-  /* ---------- click zones for flipping ---------- */
   .tap-zone{
     position:absolute;
     top:44px; bottom:44px;
@@ -316,7 +310,23 @@
   .tap-zone.left{ left:2px; }
   .tap-zone.right{ right:2px; }
 
-  /* ---------- controls ---------- */
+  .corner-drag{
+    position:absolute;
+    bottom:0;
+    width:46px;
+    height:46px;
+    z-index:8;
+    cursor:grab;
+    touch-action:none;
+    transition:opacity 0.2s;
+  }
+  .corner-drag:active{ cursor:grabbing; }
+  .corner-drag.is-hidden{ opacity:0; pointer-events:none; }
+  .corner-drag-right{ right:0; }
+  .corner-drag-left{ left:0; }
+  .corner-drag-left svg{ transform:scaleX(-1); }
+  .corner-drag svg{ width:100%; height:100%; display:block; }
+
   .controls{
     position:relative;
     z-index:1;
@@ -328,7 +338,7 @@
     width:42px;
     height:42px;
     border-radius:50%;
-    border:1px solid rgba(27,42,74,0.18);
+    border:1px solid rgba(52,39,74,0.2);
     background:rgba(255,255,255,0.7);
     color:var(--ink-soft);
     display:flex;
@@ -370,35 +380,53 @@
 <body>
 
 <div class="sky-decor" aria-hidden="true">
-  <svg viewBox="0 0 40 30"><use href="#butterfly-icon"/></svg>
-  <svg viewBox="0 0 40 30"><use href="#butterfly-icon"/></svg>
-  <svg viewBox="0 0 40 30"><use href="#butterfly-icon"/></svg>
-  <svg viewBox="0 0 40 30"><use href="#butterfly-icon"/></svg>
+  <svg viewBox="0 0 40 30"><use href="#moon-icon"/></svg>
+  <svg viewBox="0 0 40 30"><use href="#moon-icon"/></svg>
+  <svg viewBox="0 0 40 30"><use href="#moth-icon"/></svg>
+  <svg viewBox="0 0 40 30"><use href="#moon-icon"/></svg>
 </div>
 
 <!-- shared symbol defs -->
 <svg width="0" height="0" style="position:absolute">
   <defs>
-    <symbol id="butterfly-icon" viewBox="0 0 40 30">
-      <g fill="none" stroke="#3A5A8C" stroke-width="1.1" stroke-linecap="round">
-        <path d="M20 5 C14 -2, 2 2, 4 12 C6 20, 15 17, 20 9" fill="#B4778A" fill-opacity="0.55"/>
-        <path d="M20 5 C26 -2, 38 2, 36 12 C34 20, 25 17, 20 9" fill="#B4778A" fill-opacity="0.55"/>
-        <path d="M20 9 C15 14, 6 20, 8 26 C10 29, 17 26, 20 20" fill="#D9AEBB" fill-opacity="0.5"/>
-        <path d="M20 9 C25 14, 34 20, 32 26 C30 29, 23 26, 20 20" fill="#D9AEBB" fill-opacity="0.5"/>
-        <line x1="20" y1="5" x2="20" y2="22"/>
+    <symbol id="moon-icon" viewBox="0 0 40 30">
+      <g fill="none" stroke="#6B5390" stroke-width="1">
+        <path d="M22 4 C14 4, 8 11, 8 19 C8 27, 14 30, 20 29 C13 27, 10 22, 11 16 C12 9, 18 5, 24 6 Z"
+              fill="#C9B8E8" fill-opacity="0.6" stroke-opacity="0.5"/>
+        <path d="M30 8 l1.4 3.2 3.2 1.4 -3.2 1.4 -1.4 3.2 -1.4 -3.2 -3.2 -1.4 3.2 -1.4 Z"
+              fill="#8B6FB3" fill-opacity="0.55" stroke="none"/>
+        <path d="M33 18 l0.9 2 2 0.9 -2 0.9 -0.9 2 -0.9 -2 -2 -0.9 2 -0.9 Z"
+              fill="#C9B8E8" fill-opacity="0.55" stroke="none"/>
       </g>
     </symbol>
-    <symbol id="rose-icon" viewBox="0 0 60 60">
-      <g fill="none" stroke="#B4778A" stroke-width="1.2">
-        <path d="M30 30 C22 24, 22 14, 30 10 C38 14, 38 24, 30 30 Z" fill="#D9AEBB" fill-opacity="0.6"/>
-        <path d="M30 26 C25 22, 25 16, 30 13 C35 16, 35 22, 30 26 Z" fill="#B4778A" fill-opacity="0.45"/>
-        <path d="M30 30 C20 30, 14 22, 18 14" stroke-opacity="0.7"/>
-        <path d="M30 30 C40 30, 46 22, 42 14" stroke-opacity="0.7"/>
-        <line x1="30" y1="30" x2="30" y2="54" stroke="#5C7A4A" stroke-width="1.4"/>
-        <path d="M30 40 C24 40, 22 44, 24 48" stroke="#5C7A4A" stroke-width="1.2" fill="#5C7A4A" fill-opacity="0.25"/>
-        <path d="M30 46 C36 46, 38 50, 36 54" stroke="#5C7A4A" stroke-width="1.2" fill="#5C7A4A" fill-opacity="0.25"/>
+    <symbol id="raindrop-icon" viewBox="0 0 60 60">
+      <g fill="none" stroke="#6B5390" stroke-width="1.1">
+        <path d="M30 10 C36 20, 41 27, 41 34 C41 42, 35.5 47, 30 47 C24.5 47, 19 42, 19 34 C19 27, 24 20, 30 10 Z"
+              fill="#8B6FB3" fill-opacity="0.4"/>
+        <path d="M25 32 C24 37, 26 41, 29 43" stroke="#C9B8E8" stroke-width="1" stroke-opacity="0.7"/>
+        <line x1="14" y1="52" x2="14" y2="58" stroke="#8B6FB3" stroke-width="1.1" stroke-opacity="0.5"/>
+        <line x1="46" y1="50" x2="46" y2="57" stroke="#8B6FB3" stroke-width="1.1" stroke-opacity="0.5"/>
+        <line x1="30" y1="53" x2="30" y2="60" stroke="#8B6FB3" stroke-width="1.1" stroke-opacity="0.5"/>
       </g>
     </symbol>
+    <symbol id="moth-icon" viewBox="0 0 40 30">
+      <g fill="none" stroke="#6B5390" stroke-width="1.1" stroke-linecap="round">
+        <path d="M20 6 C13 -1, 1 3, 3 13 C5 21, 14 18, 20 10" fill="#8B6FB3" fill-opacity="0.5"/>
+        <path d="M20 6 C27 -1, 39 3, 37 13 C35 21, 26 18, 20 10" fill="#8B6FB3" fill-opacity="0.5"/>
+        <path d="M20 10 C16 15, 8 20, 10 25 C12 28, 17 25, 20 20" fill="#C9B8E8" fill-opacity="0.45"/>
+        <path d="M20 10 C24 15, 32 20, 30 25 C28 28, 23 25, 20 20" fill="#C9B8E8" fill-opacity="0.45"/>
+        <line x1="20" y1="6" x2="20" y2="22"/>
+        <path d="M18 5 C16 2, 14 1, 12 2" stroke-width="0.8"/>
+        <path d="M22 5 C24 2, 26 1, 28 2" stroke-width="0.8"/>
+      </g>
+    </symbol>
+  </defs>
+  <defs>
+    <linearGradient id="foldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FBFAFD"/>
+      <stop offset="55%" stop-color="#E3D8F2"/>
+      <stop offset="100%" stop-color="#C9B8E8"/>
+    </linearGradient>
   </defs>
 </svg>
 
@@ -411,12 +439,18 @@
       </div>
       <div class="tap-zone left" id="zone-left" aria-label="Previous page"></div>
       <div class="tap-zone right" id="zone-right" aria-label="Next page"></div>
+      <div class="corner-drag corner-drag-left" id="corner-left" aria-label="Drag to go back">
+        <svg viewBox="0 0 46 46"><path d="M0,46 L0,16 L30,46 Z" fill="url(#foldGrad)" stroke="#6B5390" stroke-width="0.7" stroke-opacity="0.4"/><path d="M0,16 L30,46" stroke="#6B5390" stroke-width="0.6" stroke-opacity="0.35"/></svg>
+      </div>
+      <div class="corner-drag corner-drag-right" id="corner-right" aria-label="Drag to go forward">
+        <svg viewBox="0 0 46 46"><path d="M46,46 L46,16 L16,46 Z" fill="url(#foldGrad)" stroke="#6B5390" stroke-width="0.7" stroke-opacity="0.4"/><path d="M46,16 L16,46" stroke="#6B5390" stroke-width="0.6" stroke-opacity="0.35"/></svg>
+      </div>
     </div>
   </div>
 
   <div class="controls">
     <button class="nav-btn" id="btn-prev" aria-label="Previous page">‹</button>
-    <span class="page-indicator" id="page-indicator">1 / 13</span>
+    <span class="page-indicator" id="page-indicator">1 / 4</span>
     <button class="nav-btn" id="btn-next" aria-label="Next page">›</button>
   </div>
   <p class="hint-text">click the page edges, use ← → , or swipe</p>
@@ -425,475 +459,599 @@
 <!-- ============ PAGE TEMPLATES (content only) ============ -->
 
 <template class="page" id="tpl-1">
-  <img class="p-wreath" alt="" src="data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 320 90'%3E%3C/svg%3E">
   <svg class="p-wreath" viewBox="0 0 320 90" aria-hidden="true" style="height:auto;">
-    <use href="#rose-icon" x="10" y="10" width="45" height="45"/>
-    <use href="#butterfly-icon" x="130" y="0" width="60" height="45"/>
-    <use href="#rose-icon" x="265" y="10" width="45" height="45"/>
-    <path d="M60 40 C120 60, 200 60, 260 40" fill="none" stroke="#B4778A" stroke-width="1" stroke-opacity="0.5"/>
+    <use href="#raindrop-icon" x="10" y="10" width="45" height="45"/>
+    <use href="#moon-icon" x="130" y="0" width="60" height="45"/>
+    <use href="#raindrop-icon" x="265" y="10" width="45" height="45"/>
+    <path d="M60 40 C120 60, 200 60, 260 40" fill="none" stroke="#8B6FB3" stroke-width="1" stroke-opacity="0.5"/>
   </svg>
   <p class="p-eyebrow">a collection of poems</p>
-  <p class="p-title">Anything and&nbsp;Everything</p>
-  <p class="p-sub">written by Nyra, your Cariño</p>
+  <p class="p-title">Every Quiet Night</p>
+  <p class="p-sub">written by Nyra</p>
   <p class="p-hint">↦ tap to open ↤</p>
 </template>
 
 <template class="page" id="tpl-2">
   <p class="toc-title">Contents</p>
   <ol class="toc-list">
-    <li><span>The Contract We Couldn't Rewrite</span><span class="t-page">3</span></li>
-    <li><span>The Version That Finds You</span><span class="t-page">4</span></li>
-    <li><span>Thank You for Choosing Me</span><span class="t-page">5</span></li>
-    <li><span>Unsaid</span><span class="t-page">6</span></li>
-    <li><span>Before I Walk Away</span><span class="t-page">7</span></li>
-    <li><span>The Ending We Tried to Write</span><span class="t-page">8</span></li>
-    <li><span>While I Can</span><span class="t-page">9</span></li>
-    <li><span>Because I Want You</span><span class="t-page">10</span></li>
-    <li><span>Every Second, Every Day</span><span class="t-page">11</span></li>
-    <li><span>The Promise We Keep</span><span class="t-page">12</span></li>
+    <li><span>Haru Haru</span><span class="t-page">3</span></li>
+    <li><span>Paper Cuts</span><span class="t-page">4</span></li>
+    <li><span>Déjà Vu</span><span class="t-page">5</span></li>
+    <li><span>Lonely Boy</span><span class="t-page">6</span></li>
+    <li><span>To Be or Not to Be</span><span class="t-page">7</span></li>
+    <li><span>The Long Way Home</span><span class="t-page">8</span></li>
+    <li><span>Loner</span><span class="t-page">9</span></li>
+    <li><span>Bite Me</span><span class="t-page">10</span></li>
+    <li><span>Silent Rage</span><span class="t-page">11</span></li>
+    <li><span>The Echo of Us</span><span class="t-page">12</span></li>
+    <li><span>The Apology I Never Gave</span><span class="t-page">13</span></li>
+    <li><span>A Cat Beneath the Stars</span><span class="t-page">14</span></li>
+    <li><span>The Heart I Couldn't Show</span><span class="t-page">15</span></li>
+    <li><span>Addicted to Your Echo</span><span class="t-page">16</span></li>
+    <li><span>The Rain That Couldn't Cry</span><span class="t-page">17</span></li>
+    <li><span>At Least We're Together</span><span class="t-page">18</span></li>
   </ol>
 </template>
 
 <template class="page" id="tpl-3">
   <p class="poem-num">I.</p>
-  <p class="poem-title">The Contract We Couldn't Rewrite</p>
+  <p class="poem-title">Haru Haru</p>
   <div class="poem-body">
-    <p>You looked at me and said,</p>
-    <p><em>"Things between us have changed."</em></p>
-    <p>This stopped being<br>a silly promise,<br>a game we thought<br>we could walk away from.</p>
-    <p>It became something<br>with roots.</p>
-    <p>Something that grew<br>between our hands<br>while we weren't looking.</p>
-    <p><em>"Nyra.<br>My Cariño.<br>My Pokémon Trainer.<br>Let's empty the container<br>we spent a week filling.<br>Let's start over.<br>Let's write a new contract."</em></p>
-    <p>So we did.</p>
+    <p>Day by day,</p>
+    <p>I learn<br>what it means<br>to live without you.</p>
+    <p>The mornings still arrive,<br>the sun still rises,<br>the world keeps breathing—</p>
+    <p>but none of it<br>feels the same.</p>
+    <p>I replay our memories<br>like old films,<br>hoping this time<br>they'll end differently.</p>
+    <p>I keep reaching<br>for a hand<br>that isn't there.</p>
+    <p>If loving you<br>meant losing you,</p>
+    <p>I would still<br>choose you.</p>
     <p>Again.</p>
     <p>And again.</p>
-    <p>Every page<br>was rewritten<br>with different promises,<br>different rules,<br>different endings<br>we swore we'd keep.</p>
-    <p>Yet somehow,<br>every signature<br>led us back<br>to the same place.</p>
-    <p>We pulled.</p>
-    <p>We pushed.</p>
-    <p>We tried to outrun<br>the invisible thread<br>tying your heart<br>to mine.</p>
-    <p>Round and round,<br>like two stars<br>caught in the same orbit.</p>
-    <p>The contract changed.</p>
-    <p>The names changed.</p>
-    <p>The promises changed.</p>
-    <p>But never us.</p>
-    <p>Because no matter<br>how many times<br>we tore the pages apart,</p>
-    <p>fate kept gathering<br>the pieces,<br>placing them<br>back into our hands.</p>
-    <p>Perhaps<br>we were never meant<br>to escape.</p>
-    <p>Perhaps<br>the story<br>was always written<br>between the lines<br>instead of on them.</p>
-    <p>Now I understand.</p>
-    <p>It was never<br>about writing<br>the perfect contract.</p>
-    <p>It was about discovering<br>that every version,<br>every rewrite,<br>every beginning,</p>
-    <p>ended with the same truth.</p>
-    <p>You are woven<br>into my soul.</p>
-    <p>I am woven<br>into yours.</p>
-    <p>Not because<br>we signed our names.</p>
-    <p>But because<br>every road we<br>chose<br>curved back<br>to each other.</p>
-    <p>You're mine.</p>
-    <p>I'm yours.</p>
-    <p>And this time,</p>
-    <p>we don't need<br>another rewrite</p>
+    <p>Even if the ending<br>was written<br>long before we met.</p>
+    <p>Some people<br>are only meant<br>to change your life,</p>
+    <p>not stay in it.</p>
+    <p>So I'll smile<br>when they ask<br>if I'm okay.</p>
+    <p>I'll tell them<br>I've moved on.</p>
+    <p>I'll tell them<br>you're just<br>a memory.</p>
+    <p>But every quiet night<br>knows the truth.</p>
+    <p>Every heartbeat<br>still whispers<br>your name.</p>
+    <p>And if we never<br>find each other again,</p>
+    <p>I hope another version of us<br>exists somewhere—</p>
+    <p>where goodbyes<br>don't exist,</p>
+    <p>where promises<br>don't break,</p>
+    <p>and where I never<br>have to<br>watch you<br>walk away.</p>
+    <p>Until then,</p>
+    <p>I'll love you<br>a little more</p>
+    <p>every day.</p>
   </div>
 </template>
 
 <template class="page" id="tpl-4">
   <p class="poem-num">II.</p>
-  <p class="poem-title">The Version That Finds You</p>
+  <p class="poem-title">Paper Cuts</p>
   <div class="poem-body">
-    <p>You called it<br>a reset.</p>
-    <p>I called it<br>another beginning<br>wearing a different name.</p>
-    <p>We folded our promises<br>into neat little squares,<br>thinking they would stay<br>where we left them.</p>
-    <p>But love<br>has restless hands.</p>
-    <p>It unfolded every page<br>the moment<br>we looked away.</p>
-    <p>You wanted<br>to save us<br>by making us strangers again.</p>
-    <p>I wanted<br>to save us<br>by remembering<br>who we were.</p>
-    <p>Neither of us<br>was wrong.</p>
-    <p>Neither of us<br>was ready.</p>
-    <p>We drew new borders,<br>new rules,<br>new reasons<br>to keep our hearts apart.</p>
-    <p>Yet somehow,<br>every road<br>learned the shape<br>of your footsteps.</p>
-    <p>Every silence<br>still sounded<br>like your voice.</p>
-    <p>Maybe we were foolish<br>to believe<br>that a signature<br>could decide<br>what destiny had already written.</p>
-    <p>Maybe the contract<br>was never the bond.</p>
-    <p>Maybe we were.</p>
-    <p>So let the ink fade.</p>
-    <p>Let the paper<br>turn to dust.</p>
-    <p>Let every promise<br>we once rewrote<br>be carried away<br>by the wind.</p>
-    <p>Because there is one truth<br>time has never managed<br>to erase—</p>
-    <p>No matter<br>what we call ourselves.</p>
-    <p>No matter<br>how many times<br>we begin again.</p>
-    <p>No matter<br>how carefully<br>we try to loosen<br>our grip on each other.</p>
-    <p>When the world<br>grows quiet,</p>
-    <p>when the dust settles,</p>
-    <p>when every version<br>of us<br>has had its chance—</p>
-    <p>I will still<br>find you.</p>
-    <p>And without saying a word,</p>
-    <p>you will<br>reach<br>for my hand</p>
-    <p>as though<br>you always knew</p>
-    <p>this was the only ending</p>
-    <p>our story<br>could ever choose.</p>
+    <p>Even though we're apart,</p>
+    <p>I still find pieces of you<br>hidden in ordinary days.</p>
+    <p>A song I wasn't looking for.<br>A familiar scent in the crowd.<br>A quiet evening<br>that suddenly feels too loud<br>because you're not here.</p>
+    <p>Distance is strange.</p>
+    <p>It doesn't erase love—<br>it folds it,<br>creases it,<br>until every memory<br>becomes a paper cut.</p>
+    <p>Too small for anyone else to notice.</p>
+    <p>Too deep for me to ignore.</p>
+    <p>I smile,<br>I laugh,<br>I keep moving forward,<br>yet every little reminder<br>opens the same wound<br>all over again.</p>
+    <p>People say<br>time heals everything.</p>
+    <p>Maybe.</p>
+    <p>But some names<br>are written so gently<br>across the heart<br>that even after they're gone,<br>the imprint remains.</p>
+    <p>I don't need the world<br>to understand us.</p>
+    <p>I only need you to know</p>
+    <p>that every sunrise,<br>every midnight,<br>every silent wish,</p>
+    <p>still finds its way<br>back to you.</p>
+    <p>Even though we're apart,</p>
+    <p>my heart never learned<br>how to leave.</p>
+    <p>So I'll carry these tiny cuts<br>like folded letters<br>I've never had the courage<br>to throw away.</p>
+    <p>Because love isn't always<br>about holding someone's hand.</p>
+    <p>Sometimes,</p>
+    <p>it's about loving them<br>through every mile,<br>every season,<br>every goodbye—</p>
+    <p>until life<br>lets our paths<br>cross again.</p>
   </div>
 </template>
 
 <template class="page" id="tpl-5">
   <p class="poem-num">III.</p>
-  <p class="poem-title">Thank You for Choosing Me</p>
+  <p class="poem-title">Déjà Vu</p>
   <div class="poem-body">
-    <p><em>"Thank you..."</em></p>
-    <p>Thank you for choosing me<br>as your wife.</p>
-    <p>For asking me<br>to wear your name.</p>
-    <p>For writing<br>"Anything and Everything"<br>at the top of a contract<br>neither of us<br>expected to become<br>so real.</p>
-    <p>You answered<br>with a smile<br>that carried<br>more sorrow<br>than happiness.</p>
-    <p><em>"I have no regrets, Nyra.<br><br>Not for asking you to marry me.<br><br>Not for signing that contract.<br><br>If I could live it again,<br>I would still choose you.<br><br>Again.<br><br>And again.<br><br>But I can't keep chasing<br>a future<br>I know I cannot have.<br><br>I can't keep reaching<br>for something<br>I can never truly hold."</em></p>
-    <p>Your words<br>were gentle.</p>
-    <p>But they landed<br>like falling stars—</p>
-    <p>beautiful,</p>
-    <p>yet impossible<br>to catch.</p>
-    <p>Then I whispered,</p>
-    <p>"So I'm not the one<br>meant to stand<br>beneath your light?"</p>
-    <p>You looked at me<br>as though<br>I'd asked<br>the cruelest question.</p>
-    <p><em>"I want you there,<br>every second<br>of every day.<br><br>But I'm not<br>the only light<br>in your sky.<br><br>You have others.<br>Other bonds.<br>Other people<br>who deserve<br>the warmth<br>of your heart.<br><br>What we have...<br>it can't stay<br>like this.<br><br>We can't keep longing<br>for a life<br>that reality<br>won't let us live."</em></p>
-    <p>I listened.</p>
-    <p>I understood.</p>
-    <p>But understanding<br>has never taught<br>a heart<br>how to let go.</p>
-    <p>Because if love<br>were measured<br>by possibility,</p>
-    <p>we would have ended<br>long ago.</p>
-    <p>Instead,</p>
-    <p>we keep choosing<br>each other—</p>
-    <p>not because<br>it's easy,</p>
-    <p>not because<br>it's simple,</p>
-    <p>but because<br>out of everyone<br>this world<br>placed before us,</p>
-    <p>you still chose me.</p>
-    <p>And I will always<br>be grateful</p>
-    <p>that for one beautiful moment,</p>
-    <p>I was the one</p>
-    <p>you called</p>
-    <p>your wife.</p>
+    <p>I've met you before.</p>
+    <p>Not here,<br>not now—</p>
+    <p>but somewhere<br>between forgotten dreams<br>and lives I no longer remember.</p>
+    <p>Because the moment<br>our eyes met,</p>
+    <p>my heart didn't ask<br>who you were.</p>
+    <p>It simply whispered,</p>
+    <p><em>"There you are."</em></p>
+    <p>Maybe that's why<br>being with you<br>feels so familiar.</p>
+    <p>Like returning home<br>after wandering<br>through endless skies.</p>
+    <p>Like finding<br>the missing page<br>of a story<br>my soul has been trying<br>to finish.</p>
+    <p>Sometimes I wonder</p>
+    <p>if fate keeps<br>rewriting our ending,</p>
+    <p>only to watch us<br>find each other<br>all over again.</p>
+    <p>Different names.</p>
+    <p>Different lives.</p>
+    <p>The same heartbeat.</p>
+    <p>The same longing.</p>
+    <p>No matter how many worlds<br>stand between us,</p>
+    <p>my heart recognizes yours.</p>
+    <p>Again.</p>
+    <p>And again.</p>
+    <p>Like a memory<br>I was never meant<br>to forget.</p>
+    <p>If this is another<br>déjà vu,</p>
+    <p>then let me live it<br>a thousand more times.</p>
+    <p>Because I'd rather<br>fall in love with you</p>
+    <p>in every lifetime—</p>
+    <p>than spend<br>even one</p>
+    <p>where I've never<br>known your name.</p>
   </div>
 </template>
 
 <template class="page" id="tpl-6">
   <p class="poem-num">IV.</p>
-  <p class="poem-title">Unsaid</p>
+  <p class="poem-title">Lonely Boy</p>
   <div class="poem-body">
-    <p>"I'm the one who gets jealous.<br><br>The one who blushes.<br><br>The one who cries.<br><br>The one who loves too loudly."</p>
-    <p>You smiled.</p>
-    <p>Not because I was wrong—</p>
-    <p>but because you knew.</p>
-    <p><em>"And I love you for it, Cariño.<br><br>But somewhere along the way,<br>we stopped holding love<br>and started carrying it.<br><br>It became heavier<br>than either of us expected.<br><br>We kept chasing<br>a tomorrow<br>that reality<br>would never give us.<br><br>And every day<br>we kept talking,<br>because as long as<br>your name appeared<br>on my screen,<br>it felt like<br>the impossible<br>was still within reach.<br><br>But deep down...<br><br>we both knew."</em></p>
-    <p>Your words<br>didn't break me.</p>
-    <p>They settled<br>inside my heart<br>like rain<br>that never stopped falling.</p>
-    <p>Then I told you,</p>
-    <p>"I don't want<br>anything left unsaid."</p>
-    <p>You nodded.</p>
-    <p><em>"Neither do I.<br><br>That's why<br>I wrote this letter.<br><br>There was never<br>a curse between us.<br><br>No spell.<br><br>No chains.<br><br>Only two hearts<br>running after<br>the same dream.<br><br>We've been running<br>for so long,<br>Cariño...<br><br>I think<br>our legs<br>gave out<br>long before<br>we admitted it."</em></p>
-    <p>Maybe you're right.</p>
-    <p>Maybe there isn't<br>a finish line<br>waiting for us.</p>
-    <p>Maybe there never was.</p>
-    <p>But if loving you<br>was a journey<br>with no destination,</p>
-    <p>then every step<br>was still worth taking.</p>
-    <p>Because you taught me<br>that love<br>isn't measured<br>by whether<br>it lasts forever.</p>
-    <p>Sometimes,</p>
-    <p>it's measured<br>by the way<br>someone changes you<br>simply by staying.</p>
-    <p>So if this<br>is where<br>our footsteps stop,</p>
-    <p>don't ask me<br>to regret<br>the path.</p>
-    <p>Because every road<br>that led me to you</p>
-    <p>was worth<br>walking.</p>
-    <p>Even if<br>it wasn't meant</p>
-    <p>to last forever.</p>
+    <p>There goes the lonely boy,<br>smiling just enough<br>to convince the world<br>he's doing fine.</p>
+    <p>No one notices<br>how heavy silence becomes<br>when the room empties,<br>or how every laugh<br>is followed<br>by another sleepless night.</p>
+    <p>He carries storms<br>behind gentle eyes,</p>
+    <p>and every<br>"I'm okay"<br>is another lie<br>he's learned<br>to tell so well.</p>
+    <p>He watches people<br>find a place<br>to call home<br>in someone else's heart,<br>while he keeps wondering<br>what it feels like<br>to be chosen.</p>
+    <p>To be someone's<br>first thought.</p>
+    <p>Someone's safe place.</p>
+    <p>Someone's reason<br>to stay.</p>
+    <p>He isn't asking<br>for the whole world.</p>
+    <p>Just one person<br>who will notice<br>when his smile fades,<br>who will hold his hand<br>without letting go,<br>who will look at him<br>and say,</p>
+    <p><em>"You don't have to<br>carry everything alone."</em></p>
+    <p>Until then,</p>
+    <p>he'll keep walking,</p>
+    <p>a lonely boy<br>with a heart<br>still brave enough<br>to believe</p>
+    <p>that one day,</p>
+    <p>someone will call it</p>
+    <p>home.</p>
   </div>
 </template>
 
 <template class="page" id="tpl-7">
   <p class="poem-num">V.</p>
-  <p class="poem-title">Before I Walk Away</p>
+  <p class="poem-title">To Be or Not to Be</p>
   <div class="poem-body">
-    <p>I had already made my choice.</p>
-    <p>My hand was on the door,<br>my heart was halfway gone.</p>
-    <p>I thought leaving<br>would be easier<br>than staying somewhere<br>that kept hurting us both.</p>
-    <p>Then you said—</p>
-    <p><em>"Cariño...<br><br>I think we need to talk."</em></p>
-    <p>And for a moment,</p>
-    <p>everything I was trying<br>to let go of</p>
-    <p>stood in front of me again.</p>
-    <p>You didn't ask me<br>to stay because you were selfish.</p>
-    <p>You asked because<br>you understood.</p>
-    <p>You saw the distance<br>I was creating.</p>
-    <p>You saw the goodbye<br>I was trying to hide.</p>
-    <p><em>"What is this between us?"</em></p>
-    <p>you asked.</p>
-    <p><em>"This bond.<br>This obsession.<br>This thing we both want,<br>but neither of us can truly have."</em></p>
-    <p>You called it<br>a dream twisted by reality.</p>
-    <p>And maybe it was.</p>
-    <p>Because I wanted you.</p>
-    <p>More than I should.</p>
-    <p>More than I could explain.</p>
-    <p>But wanting someone<br>doesn't always mean<br>you are allowed<br>to keep them.</p>
-    <p><em>"Let me disappear<br>for a while."</em></p>
-    <p>Those were the words<br>I wanted to say.</p>
-    <p>Not because I stopped loving you.</p>
-    <p>But because I was tired<br>of fighting a battle<br>where my heart<br>kept hoping<br>for something my reality<br>couldn't promise.</p>
-    <p>Yet you reached for me.</p>
-    <p>You reminded me<br>that leaving<br>doesn't erase love.</p>
-    <p>That walking away<br>doesn't mean<br>what we had meant nothing.</p>
-    <p>And maybe that was<br>the hardest truth.</p>
-    <p>Because if you didn't care,</p>
-    <p>leaving would have been easy.</p>
-    <p>But you cared.</p>
-    <p>I cared.</p>
-    <p>And somewhere between<br>holding on<br>and letting go,</p>
-    <p>we became two people<br>standing at the edge<br>of the same impossible dream.</p>
-    <p>So I stayed a little longer.</p>
-    <p>Not because the pain disappeared.</p>
-    <p>Not because the impossible<br>became possible.</p>
-    <p>But because sometimes,</p>
-    <p>before two hearts say goodbye,</p>
-    <p>they deserve<br>one honest conversation.</p>
-    <p>One last moment<br>where they stop running</p>
-    <p>and finally admit—</p>
-    <p>"You mattered to me."</p>
-    <p>"You still do."</p>
+    <p>To stay,</p>
+    <p>or to disappear.</p>
+    <p>To love you,</p>
+    <p>or to save what's left of me.</p>
+    <p>I've stood<br>between those two choices<br>for so long,</p>
+    <p>I no longer know<br>which one hurts more.</p>
+    <p>You became<br>the question<br>I could never answer.</p>
+    <p>Every goodbye<br>pulls me back.</p>
+    <p>Every hello<br>breaks me again.</p>
+    <p>If I let you go,</p>
+    <p>will I finally breathe?</p>
+    <p>Or will I spend<br>the rest of my life</p>
+    <p>searching for the piece<br>of my soul<br>that left with you?</p>
+    <p>Love isn't always<br>a fairytale.</p>
+    <p>Sometimes,</p>
+    <p>it's a battlefield<br>where neither heart wins.</p>
+    <p>So here I am,</p>
+    <p>standing at the edge<br>of everything we were,</p>
+    <p>asking the same question<br>the stars refuse to answer.</p>
+    <p>To be—</p>
+    <p>without you.</p>
+    <p>Or not to be—</p>
+    <p>because loving you<br>became the only way<br>I knew how to exist.</p>
+    <p>Maybe there is<br>no right choice.</p>
+    <p>Maybe love<br>was never meant<br>to be easy.</p>
+    <p>Maybe all I can do</p>
+    <p>is close my eyes,</p>
+    <p>take one final step,</p>
+    <p>and hope</p>
+    <p>that whatever waits<br>on the other side</p>
+    <p>still remembers</p>
+    <p>our names.</p>
   </div>
 </template>
 
 <template class="page" id="tpl-8">
   <p class="poem-num">VI.</p>
-  <p class="poem-title">The Ending We Tried to Write</p>
+  <p class="poem-title">The Long Way Home</p>
   <div class="poem-body">
-    <p>After all the words,</p>
-    <p>after all the promises<br>to slow down,</p>
-    <p>after all the reasons<br>we gave ourselves<br>to let go—</p>
-    <p>you looked at me<br>and said,</p>
-    <p><em>"I want all of you."</em></p>
-    <p>And somehow,</p>
-    <p>those four words<br>carried everything<br>we were too afraid<br>to admit.</p>
-    <p>Not a piece.</p>
-    <p>Not a moment.</p>
-    <p>Not a version of me<br>that was convenient.</p>
-    <p>You wanted<br>all the laughter,<br>all the chaos,<br>all the feelings<br>I tried to hide.</p>
-    <p>Then you whispered,</p>
-    <p><em>"I'll miss seeing your name<br>pop up in game."</em></p>
-    <p>Such a simple thing.</p>
-    <p>A name appearing<br>on a screen.</p>
-    <p>A small notification.</p>
-    <p>A tiny moment<br>that shouldn't have mattered<br>as much as it did.</p>
-    <p>But it did.</p>
-    <p>Because sometimes<br>love is not built<br>from grand promises.</p>
-    <p>Sometimes it is built<br>from the little things—</p>
-    <p>waiting for a message,</p>
-    <p>smiling at a familiar name,</p>
-    <p>feeling your day become lighter<br>because someone appeared.</p>
-    <p><em>"I never thought<br>I'd be happy<br>to see someone message me."</em></p>
-    <p>And there it was.</p>
-    <p>The truth<br>we had been avoiding.</p>
-    <p>We could write<br>a hundred contracts.</p>
-    <p>Create a thousand rules.</p>
-    <p>Tell ourselves<br>we needed distance.</p>
-    <p>But our hearts<br>never followed<br>the instructions.</p>
-    <p>The obsession remained.</p>
-    <p>The longing remained.</p>
-    <p>The impossible dream<br>still waited between us.</p>
-    <p>Maybe we were foolish.</p>
-    <p>Maybe we were stubborn.</p>
-    <p>Maybe we were two hearts<br>trying to convince ourselves<br>that love could be controlled.</p>
-    <p>But in the end,</p>
-    <p>after every goodbye,</p>
-    <p>after every attempt<br>to walk away,</p>
-    <p>we still looked<br>for each other.</p>
-    <p>Still waited.</p>
-    <p>Still chose.</p>
-    <p>The story we tried<br>so hard to end</p>
-    <p>became the story<br>we kept rewriting.</p>
-    <p>Because no matter<br>how many times<br>we said we should let go,</p>
-    <p>somehow...</p>
-    <p>we always found<br>another reason</p>
-    <p>to hold on.</p>
+    <p>The moon has always known</p>
+    <p>how heavy<br>a lonely heart can become.</p>
+    <p>It watches<br>without speaking,</p>
+    <p>listening to wishes<br>too fragile<br>for daylight.</p>
+    <p>So I leave<br>another piece of myself<br>among the stars,</p>
+    <p>hoping the night<br>will carry it<br>to you.</p>
+    <p>Some roads<br>are meant to be walked alone.</p>
+    <p>Not because<br>we're forgotten,</p>
+    <p>but because<br>every journey<br>asks us<br>to become someone new.</p>
+    <p>I've stumbled.</p>
+    <p>I've fallen.</p>
+    <p>I've wondered<br>if anyone<br>was waiting<br>at the end<br>of this endless path.</p>
+    <p>Then the wind<br>whispered softly,</p>
+    <p><em>"Keep walking."</em></p>
+    <p>Not every goodbye<br>is forever.</p>
+    <p>Not every silence<br>means you're alone.</p>
+    <p>Even if<br>the mountains<br>stand between us,</p>
+    <p>the same sky<br>covers us both.</p>
+    <p>So when you<br>look up tonight,</p>
+    <p>know that somewhere,</p>
+    <p>under this endless moon,</p>
+    <p>I'm doing the same—</p>
+    <p>trusting that every step,<br>every scar,<br>every lonely night</p>
+    <p>is leading us</p>
+    <p>toward the place</p>
+    <p>where we no longer<br>have to say</p>
+    <p>"See you again."</p>
+    <p>Only,</p>
+    <p>"I'm home."</p>
   </div>
 </template>
 
 <template class="page" id="tpl-9">
   <p class="poem-num">VII.</p>
-  <p class="poem-title">While I Can</p>
+  <p class="poem-title">Loner</p>
   <div class="poem-body">
-    <p>There was a long silence.</p>
-    <p>The kind<br>that only exists<br>after two hearts<br>have said<br>everything they were afraid to say.</p>
-    <p>Then you laughed,<br>softly.</p>
-    <p>Almost as if<br>you were surrendering<br>to a truth<br>you could no longer hide.</p>
-    <p><em>"I guess...<br><br>I'm sort of obsessed."</em></p>
-    <p>I looked at you,<br>waiting.</p>
-    <p>You smiled,<br>the kind of smile<br>that trembles<br>before it breaks.</p>
-    <p><em>"You're not the only one<br>who's attached, Cariño.<br><br>I'm addicted too.<br><br>I keep looking for you<br>without realizing it.<br><br>I keep waiting<br>for your messages.<br><br>I keep hoping<br>it's your name<br>that appears.<br><br>I think...<br><br>I think I'm obsessed."</em></p>
-    <p>The room<br>grew quiet again.</p>
-    <p>Not because<br>there was nothing left to say.</p>
-    <p>Because the truth<br>had finally found<br>its voice.</p>
-    <p>Then you asked me<br>a question<br>so small,</p>
-    <p>yet so impossible.</p>
-    <p><em>"Can I just have you...<br><br>All of you...<br><br>While I can?"</em></p>
-    <p>Not forever.</p>
-    <p>Not with promises<br>we couldn't keep.</p>
-    <p>Not with dreams<br>that reality<br>might one day steal.</p>
-    <p>Just...</p>
-    <p>while you could.</p>
-    <p>And my heart<br>betrayed every promise<br>it had made<br>to be careful.</p>
-    <p>Because how could I<br>say no</p>
-    <p>to someone</p>
-    <p>who never asked<br>to own me—</p>
-    <p>only to love me</p>
-    <p>for as long</p>
-    <p>as the universe<br>would allow?</p>
-    <p>Perhaps<br>that was always<br>our tragedy.</p>
-    <p>Not that we loved<br>too deeply.</p>
-    <p>But that we knew</p>
-    <p>every borrowed moment</p>
-    <p>was precious.</p>
-    <p>So if all we have</p>
-    <p>is "while we can,"</p>
-    <p>then hold my hand,<br>Cariño.</p>
-    <p>Until "while"</p>
-    <p>becomes another memory</p>
-    <p>we'll never stop<br>treasuring.</p>
+    <p>The room feels bigger<br>when you're not here.</p>
+    <p>The walls remember<br>the sound of your laughter,<br>but I only hear<br>the echo.</p>
+    <p>I walk through the same streets,<br>pass the same places,<br>but everything feels unfamiliar—</p>
+    <p>like the world moved forward<br>and left me behind.</p>
+    <p>People ask me,</p>
+    <p>"Are you okay?"</p>
+    <p>And I smile.</p>
+    <p>I say yes.</p>
+    <p>Because sometimes<br>the hardest pain<br>is the one you learn<br>to hide.</p>
+    <p>I still reach for my phone<br>when something reminds me of you.</p>
+    <p>I still turn around<br>when I hear a familiar voice.</p>
+    <p>I still look for you<br>in places<br>I know you won't be.</p>
+    <p>Maybe that's what hurts the most.</p>
+    <p>Not losing you once,</p>
+    <p>but losing you<br>in every little moment<br>after.</p>
+    <p>The days keep passing.</p>
+    <p>The nights keep coming.</p>
+    <p>Everyone finds someone<br>to walk beside them,</p>
+    <p>while I keep walking alone,</p>
+    <p>carrying memories<br>that no longer have a place to go.</p>
+    <p>I never wanted<br>to become a loner.</p>
+    <p>I just became someone<br>who loved too deeply,</p>
+    <p>and now<br>has to learn</p>
+    <p>how to live</p>
+    <p>with the empty space</p>
+    <p>you left behind.</p>
   </div>
 </template>
 
 <template class="page" id="tpl-10">
   <p class="poem-num">VIII.</p>
-  <p class="poem-title">Because I Want You</p>
+  <p class="poem-title">Bite Me</p>
   <div class="poem-body">
-    <p>"I want all of you."</p>
-    <p>Not the easy parts.</p>
-    <p>Not only the moments<br>when everything feels right.</p>
-    <p>I want the laughter,<br>the silence,<br>the little habits<br>you don't even notice.</p>
-    <p>I want the version of you<br>that you hide<br>when you think<br>you are too much.</p>
-    <p>"I always want you."</p>
-    <p>Not because<br>I don't know reality.</p>
-    <p>Not because<br>I believe love<br>can erase every boundary.</p>
-    <p>But because<br>somewhere along the way,</p>
-    <p>you became the person<br>my heart searches for<br>without asking permission.</p>
-    <p>"I wanted you."</p>
-    <p>Before the promises.</p>
-    <p>Before the names.</p>
-    <p>Before we tried<br>to define what this was.</p>
-    <p>I wanted you<br>because something about you<br>felt like a place<br>I had been looking for<br>without knowing.</p>
-    <p>And when I asked why,</p>
-    <p>the answer was simple.</p>
-    <p>"I want you."</p>
-    <p>You keep telling me<br>the same thing<br>every day.</p>
-    <p>You remind me<br>with your words.</p>
-    <p>With your patience.</p>
-    <p>With the way<br>you come back.</p>
-    <p>You tell me<br>how much you want me<br>until sometimes<br>I forget to doubt it.</p>
-    <p>And maybe that is<br>what scares me the most.</p>
-    <p>Because wanting someone<br>is easy to say.</p>
-    <p>But choosing them<br>again and again—</p>
-    <p>that is where<br>love becomes real.</p>
-    <p>So here we are.</p>
-    <p>Two hearts<br>caught between<br>what we wish for<br>and what we can have.</p>
-    <p>Still reaching.</p>
-    <p>Still holding on.</p>
-    <p>Still saying<br>the words<br>we never get tired of hearing.</p>
-    <p>"I want you."</p>
-    <p>"I choose you."</p>
-    <p>"Still."</p>
+    <p>Come closer.</p>
+    <p>Not because I need saving,</p>
+    <p>but because my heart<br>already knows your name.</p>
+    <p>There is something about you</p>
+    <p>that feels dangerous<br>and familiar at the same time—</p>
+    <p>like a secret<br>I was never meant to hide.</p>
+    <p>I tried to run.</p>
+    <p>I tried to convince myself<br>that distance would make me forget.</p>
+    <p>But every road I take<br>somehow leads back to you.</p>
+    <p>You are the shadow<br>that follows my dreams,</p>
+    <p>the melody<br>I hear in the silence,</p>
+    <p>the missing piece<br>I keep searching for<br>without knowing why.</p>
+    <p>Maybe we were never meant<br>to be ordinary.</p>
+    <p>Maybe our story<br>was written in the spaces<br>between desire and destiny.</p>
+    <p>So stay a little longer.</p>
+    <p>Let the world disappear.</p>
+    <p>Let the night remember us.</p>
+    <p>Because even when tomorrow comes,</p>
+    <p>even when time changes everything,</p>
+    <p>there will always be a part of me</p>
+    <p>that reaches for you.</p>
+    <p>Not out of weakness.</p>
+    <p>Not out of fear.</p>
+    <p>But because some hearts</p>
+    <p>don't just meet—</p>
+    <p>they recognize each other.</p>
   </div>
 </template>
 
 <template class="page" id="tpl-11">
   <p class="poem-num">IX.</p>
-  <p class="poem-title">Every Second, Every Day</p>
+  <p class="poem-title">Silent Rage</p>
   <div class="poem-body">
-    <p>Every second.</p>
-    <p>Every day.</p>
-    <p>You tell me<br>the same thing.</p>
-    <p><em>"I want you."</em></p>
-    <p>Not just when<br>the world feels quiet.</p>
-    <p>Not just when<br>you miss me.</p>
-    <p>But always.</p>
-    <p>You say<br>your heart already decided<br>before your mind<br>could find a reason.</p>
-    <p><em>"I will always want you."</em></p>
-    <p>And maybe that's<br>the most dangerous thing<br>about us.</p>
-    <p>Not the distance.</p>
-    <p>Not the impossible parts.</p>
-    <p>But the way<br>we keep choosing<br>each other<br>even when we know<br>how complicated it is.</p>
-    <p>You look at me<br>and remind me—</p>
-    <p><em>"That doesn't change the fact<br>that right here,<br>you're mine.<br><br>You're mine.<br><br>Because you're mine."</em></p>
-    <p>Those words<br>should scare me.</p>
-    <p>Maybe they should<br>make me run.</p>
-    <p>But instead,<br>they feel like<br>a place I return to.</p>
-    <p>A reminder<br>that somewhere<br>in this messy,<br>beautiful chaos,</p>
-    <p>I am wanted.</p>
-    <p>I am remembered.</p>
-    <p>I am chosen.</p>
-    <p>Every day,<br>you say it again.</p>
-    <p>Not because<br>you forgot.</p>
-    <p>But because<br>you want me to know.</p>
-    <p>You want me to hear it.</p>
-    <p>You want me to believe it.</p>
-    <p>And maybe that's why<br>we keep coming back.</p>
-    <p>Because no matter<br>how many times<br>we try to understand<br>what we are,</p>
-    <p>there is one thing<br>we never struggle<br>to understand.</p>
-    <p>You want me.</p>
-    <p>I want you.</p>
-    <p>And every day,</p>
-    <p>we find another reason</p>
-    <p>to stay.</p>
+    <p>I'm tired.</p>
+    <p>Not of the world,</p>
+    <p>but of the noise it creates.</p>
+    <p>The voices that judge<br>without knowing the story.</p>
+    <p>The words thrown like weapons<br>from people who never learned<br>how much they can hurt.</p>
+    <p>They speak so easily.</p>
+    <p>They break so casually.</p>
+    <p>Then they walk away<br>as if nothing happened.</p>
+    <p>But I remember.</p>
+    <p>I remember every scar<br>left by careless words.</p>
+    <p>Every moment<br>I had to pretend<br>I wasn't affected.</p>
+    <p>They tell me to ignore it.</p>
+    <p>They tell me to stay calm.</p>
+    <p>But how do you stay silent<br>when your heart is screaming?</p>
+    <p>How do you smile<br>when anger burns<br>under your skin?</p>
+    <p>Sometimes I want to shout.</p>
+    <p>Sometimes I want the whole world<br>to feel the weight<br>of what they caused.</p>
+    <p>But I know—</p>
+    <p>anger is a fire.</p>
+    <p>It can warm you,</p>
+    <p>or it can consume you.</p>
+    <p>So I'll turn my frustration<br>into strength.</p>
+    <p>I'll let my voice become louder<br>than their hatred.</p>
+    <p>I'll keep walking forward,</p>
+    <p>not because it didn't hurt,</p>
+    <p>but because I refuse<br>to let their words</p>
+    <p>become my ending.</p>
   </div>
 </template>
 
 <template class="page" id="tpl-12">
   <p class="poem-num">X.</p>
-  <p class="poem-title">The Promise We Keep</p>
+  <p class="poem-title">The Echo of Us</p>
   <div class="poem-body">
-    <p>We keep choosing.</p>
-    <p>Even when we know<br>how complicated it is.</p>
-    <p>Even when we tell ourselves<br>to step back.</p>
-    <p>Somehow,</p>
-    <p>after all the silence,<br>all the doubts,<br>all the attempts to let go,</p>
-    <p>it is still my name<br>that stays in your mind.</p>
-    <p>You could deny it.</p>
-    <p>You could tell yourself<br>that we should follow<br>the rules we created.</p>
-    <p>That the contract<br>was meant to protect us.</p>
-    <p>But your heart<br>always betrays your words.</p>
-    <p>Because maybe<br>you just love me too much<br>to pretend<br>that I mean nothing.</p>
-    <p>Maybe somewhere<br>along the way,</p>
-    <p>I became the person<br>you search for.</p>
-    <p>The name you hope to see.</p>
-    <p>The message<br>you wait for.</p>
-    <p>And then you stop fighting it.</p>
-    <p>You look at everything<br>we tried to control,</p>
-    <p>and you say—</p>
-    <p><em>"Screw the contract."<br><br>"I'm here."<br><br>"I'm yours."</em></p>
-    <p>And I smile,</p>
-    <p>because I already knew.</p>
-    <p>I knew that no matter<br>how many times<br>we tried to rewrite us,</p>
-    <p>we would always return<br>to the same page.</p>
-    <p>So I tell you,</p>
-    <p><em>"I'm always here for you,<br>my PokéBall."</em></p>
-    <p>Not because<br>a contract demands it.</p>
-    <p>Not because<br>we are trapped.</p>
-    <p>But because<br>I choose you.</p>
-    <p>Every time.</p>
-    <p>And you answer me softly,</p>
-    <p><em>"I'm always here, Cariño.<br><br>It's probably unhealthy."</em></p>
-    <p>Maybe it is.</p>
-    <p>Maybe we hold on<br>a little too tightly.</p>
-    <p>Maybe we feel things<br>a little too deeply.</p>
-    <p>But even knowing that,</p>
-    <p>you don't walk away.</p>
-    <p>You stay.</p>
-    <p>Because beneath all the fear,<br>beneath all the reasons<br>we tell ourselves<br>to stop,</p>
-    <p>there is still one truth<br>we cannot escape.</p>
-    <p>We keep choosing.</p>
-    <p>And somehow,</p>
-    <p>after everything,</p>
-    <p>you are still here.</p>
-    <p>And so am I.</p>
+    <p>The rain falls quietly tonight,</p>
+    <p>as if even the sky<br>is afraid to speak.</p>
+    <p>I walk through memories<br>that no longer belong to me,</p>
+    <p>touching the echoes<br>of days we used to share.</p>
+    <p>Some names are like old songs—</p>
+    <p>you don't hear them anymore,</p>
+    <p>but your heart still remembers<br>every note.</p>
+    <p>I thought time would wash away<br>the traces of you.</p>
+    <p>But some feelings<br>are not written on the surface.</p>
+    <p>They are carved deeper,</p>
+    <p>where no storm can reach.</p>
+    <p>I keep moving forward,</p>
+    <p>yet a part of me remains</p>
+    <p>standing in the place<br>where we said goodbye.</p>
+    <p>Maybe we were never meant<br>to last forever.</p>
+    <p>Maybe we were only a chapter<br>written beautifully<br>before the ending.</p>
+    <p>But even now,</p>
+    <p>when the night is silent,</p>
+    <p>I still wish you happiness.</p>
+    <p>Even if it is a happiness<br>I cannot be part of.</p>
+    <p>Because loving someone<br>does not always mean holding on.</p>
+    <p>Sometimes,</p>
+    <p>it means letting the wind carry them away</p>
+    <p>while you quietly whisper—</p>
+    <p><em>"Thank you<br><br>for once being my home."</em></p>
   </div>
 </template>
 
 <template class="page" id="tpl-13">
+  <p class="poem-num">XI.</p>
+  <p class="poem-title">The Apology I Never Gave</p>
+  <div class="poem-body">
+    <p>I'm sorry.</p>
+    <p>Two words<br>that arrived too late.</p>
+    <p>I kept them hidden<br>behind my pride,</p>
+    <p>behind the silence<br>that grew between us.</p>
+    <p>I wonder sometimes—</p>
+    <p>if I had reached for your hand sooner,</p>
+    <p>if I had said what I truly felt,</p>
+    <p>would you still be here?</p>
+    <p>The days continue without you,</p>
+    <p>but some moments<br>still stop me in my tracks.</p>
+    <p>A familiar song.</p>
+    <p>A quiet street.</p>
+    <p>A memory of your smile.</p>
+    <p>Little pieces of the past<br>that remind me</p>
+    <p>of everything I failed to protect.</p>
+    <p>I never meant to hurt you.</p>
+    <p>I never meant for my absence<br>to feel like abandonment.</p>
+    <p>But intentions don't erase pain,</p>
+    <p>and apologies don't always repair<br>what has already broken.</p>
+    <p>So if these words<br>ever find their way to you,</p>
+    <p>I hope you know—</p>
+    <p>I was grateful for you.</p>
+    <p>I was happy with you.</p>
+    <p>And even though I couldn't say it<br>when I had the chance,</p>
+    <p>you were someone<br>I never wanted to lose.</p>
+    <p>Maybe in another time,</p>
+    <p>another life,</p>
+    <p>we would meet again</p>
+    <p>with softer hearts</p>
+    <p>and fewer regrets.</p>
+    <p>Until then,</p>
+    <p>I'll carry your memory quietly,</p>
+    <p>and whisper the words</p>
+    <p>I should have said before—</p>
+    <p>I'm sorry.</p>
+  </div>
+</template>
+
+<template class="page" id="tpl-14">
+  <p class="poem-num">XII.</p>
+  <p class="poem-title">A Cat Beneath the Stars</p>
+  <div class="poem-body">
+    <p>Somewhere between the galaxies,</p>
+    <p>there is a little heart</p>
+    <p>floating alone.</p>
+    <p>Not lost,</p>
+    <p>just searching</p>
+    <p>for a place</p>
+    <p>where it can finally rest.</p>
+    <p>The universe is so wide,</p>
+    <p>yet loneliness</p>
+    <p>can still feel</p>
+    <p>like the smallest room.</p>
+    <p>I chase after stars</p>
+    <p>that disappear by morning.</p>
+    <p>I hold onto dreams</p>
+    <p>that slip through my paws.</p>
+    <p>I wonder if the moon</p>
+    <p>ever feels lonely too,</p>
+    <p>watching everyone leave</p>
+    <p>while it stays behind.</p>
+    <p>Maybe I'm just a small creature</p>
+    <p>in an endless sky,</p>
+    <p>trying to understand</p>
+    <p>why I feel everything</p>
+    <p>so deeply.</p>
+    <p>But even in the darkest ocean</p>
+    <p>of endless space,</p>
+    <p>there is still a light</p>
+    <p>waiting to be found.</p>
+    <p>A gentle voice.</p>
+    <p>A warm hand.</p>
+    <p>A place that says,</p>
+    <p><em>"You don't have to wander anymore."</em></p>
+    <p>So I'll keep swimming</p>
+    <p>through this universe,</p>
+    <p>through the storms,</p>
+    <p>through the silence,</p>
+    <p>until I find my little corner</p>
+    <p>among the stars.</p>
+    <p>And when I look back,</p>
+    <p>I'll know—</p>
+    <p>I was never drowning.</p>
+    <p>I was only learning</p>
+    <p>how to find my way home.</p>
+  </div>
+</template>
+
+<template class="page" id="tpl-15">
+  <p class="poem-num">XIII.</p>
+  <p class="poem-title">The Heart I Couldn't Show</p>
+  <div class="poem-body">
+    <p>I wish I could say it.</p>
+    <p>All the words<br>I kept buried inside.</p>
+    <p>The feelings I hid<br>behind a smile,</p>
+    <p>the tears I swallowed<br>when nobody was looking.</p>
+    <p>People say,</p>
+    <p><em>"Just open your heart."</em></p>
+    <p>But what if my heart<br>doesn't know how to speak?</p>
+    <p>What if every time<br>I try to explain,</p>
+    <p>my voice disappears<br>before the words arrive?</p>
+    <p>I never wanted<br>to seem distant.</p>
+    <p>I never wanted<br>to push you away.</p>
+    <p>I just didn't know<br>how to ask for comfort</p>
+    <p>without feeling like<br>a burden.</p>
+    <p>So I learned to smile.</p>
+    <p>I learned to say,</p>
+    <p>"I'm fine."</p>
+    <p>I learned to hide<br>the storms inside me.</p>
+    <p>But sometimes,</p>
+    <p>I wish someone would notice—</p>
+    <p>not the smile,</p>
+    <p>not the mask,</p>
+    <p>but the quiet part of me<br>that is begging to be understood.</p>
+    <p>I don't need you<br>to fix everything.</p>
+    <p>I don't need perfect words.</p>
+    <p>I only want someone<br>to sit beside me</p>
+    <p>and say,</p>
+    <p><em>"I know you're hurting.<br><br>You don't have to hide anymore."</em></p>
+    <p>Because even a silent heart</p>
+    <p>is still a heart.</p>
+    <p>And even the quietest soul</p>
+    <p>still wishes</p>
+    <p>to be heard.</p>
+  </div>
+</template>
+
+<template class="page" id="tpl-16">
+  <p class="poem-num">XIV.</p>
+  <p class="poem-title">Addicted to Your Echo</p>
+  <div class="poem-body">
+    <p>I tried to leave.</p>
+    <p>I really did.</p>
+    <p>I told myself<br>that I could walk away,</p>
+    <p>that time would wash away<br>the memories of you.</p>
+    <p>But somehow,</p>
+    <p>every road I take<br>leads me back.</p>
+    <p>Your voice is a melody<br>I can't forget.</p>
+    <p>Your smile is a picture<br>my mind keeps replaying.</p>
+    <p>I don't know when it happened—</p>
+    <p>when you became<br>the first thought in my morning</p>
+    <p>and the last name<br>my heart whispers at night.</p>
+    <p>Maybe I loved you too much.</p>
+    <p>Maybe I let you become<br>a part of me</p>
+    <p>that I no longer know<br>how to live without.</p>
+    <p>You are the storm<br>I run toward,</p>
+    <p>the fire I reach for,</p>
+    <p>the dream I don't want<br>to wake from.</p>
+    <p>Everyone tells me<br>to let go.</p>
+    <p>They say some feelings<br>are meant to fade.</p>
+    <p>But how do I forget<br>something that feels<br>like it was written into me?</p>
+    <p>So here I am,</p>
+    <p>caught between<br>wanting to escape</p>
+    <p>and wanting to stay.</p>
+    <p>Because loving you<br>is the sweetest danger<br>I've ever known.</p>
+    <p>And even if my heart<br>gets lost searching for you,</p>
+    <p>a part of me</p>
+    <p>will always wonder—</p>
+    <p>what if I never stopped<br>falling?</p>
+  </div>
+</template>
+
+<template class="page" id="tpl-17">
+  <p class="poem-num">XV.</p>
+  <p class="poem-title">The Rain That Couldn't Cry</p>
+  <div class="poem-body">
+    <p>The sky looks beautiful today,</p>
+    <p>but I know better.</p>
+    <p>Some storms<br>do not come with thunder.</p>
+    <p>Some storms<br>live quietly inside the heart.</p>
+    <p>I keep searching<br>for the right words,</p>
+    <p>but every feeling<br>turns into silence<br>before it reaches my lips.</p>
+    <p>I want to say,</p>
+    <p>"I'm tired."</p>
+    <p>I want to say,</p>
+    <p>"I need someone."</p>
+    <p>But my voice disappears,</p>
+    <p>and I become someone<br>who smiles through the rain.</p>
+    <p>People see the calm.</p>
+    <p>They never see<br>the waves crashing underneath.</p>
+    <p>They never hear<br>the questions I ask myself<br>when the night becomes too long.</p>
+    <p>Am I too much?</p>
+    <p>Am I not enough?</p>
+    <p>Why does wanting to be understood<br>feel like asking for the impossible?</p>
+    <p>I keep giving pieces of myself<br>until there is almost nothing left.</p>
+    <p>And still,</p>
+    <p>I say,</p>
+    <p>"I'm okay."</p>
+    <p>Maybe I'm just a cloud<br>holding too much water,</p>
+    <p>waiting for the moment<br>I can finally let it fall.</p>
+    <p>So if one day<br>you see my tears,</p>
+    <p>please don't ask me<br>why I am crying.</p>
+    <p>Just stay.</p>
+    <p>Because sometimes,</p>
+    <p>a heart doesn't need answers.</p>
+    <p>It only needs someone<br>who won't leave<br>when the rain begins.</p>
+  </div>
+</template>
+
+<template class="page" id="tpl-18">
+  <p class="poem-num">XVI.</p>
+  <p class="poem-title">At Least We're Together</p>
+  <div class="poem-body">
+    <p>In another life,<br>I would be your girl.</p>
+    <p>The one who wakes beside you,<br>the one whose hand you never have to let go,<br>the one who gets to love you<br>without fear,<br>without distance,<br>without time stealing us away.</p>
+    <p>But this isn't that life.</p>
+    <p>So for now,<br>let's cherish every second we have.<br>Every laugh,<br>every late-night conversation,<br>every quiet moment<br>where the world disappears<br>and it's only you and me.</p>
+    <p>Let's pretend the stars<br>were always meant to write our names together.<br>Let's pretend tomorrow<br>doesn't exist.</p>
+    <p>Because when I'm with you,<br>the noise fades away.<br>The world can keep spinning,<br>people can keep talking,<br>time can keep running—</p>
+    <p>but none of it matters.</p>
+    <p>As long as it's us<br>against the world.</p>
+    <p>Maybe fate wasn't kind enough<br>to give me the life<br>where I could call you mine forever.</p>
+    <p>Maybe we're only meant<br>to be a beautiful chapter<br>instead of the whole story.</p>
+    <p>But if I could choose,<br>I would choose you<br>again and again,<br>in every universe,<br>in every lifetime,<br>under every sky.</p>
+    <p>And until another life finds us,</p>
+    <p>I'll hold on to this one.</p>
+    <p>Because no matter how brief,<br>no matter how impossible,</p>
+    <p>at least...</p>
+    <p>we're together.</p>
+  </div>
+</template>
+
+<template class="page" id="tpl-19">
   <svg class="p-wreath" viewBox="0 0 260 70" aria-hidden="true" style="height:auto;">
-    <use href="#rose-icon" x="0" y="5" width="42" height="42"/>
-    <use href="#butterfly-icon" x="100" y="0" width="60" height="42"/>
-    <use href="#rose-icon" x="215" y="5" width="42" height="42"/>
+    <use href="#raindrop-icon" x="0" y="5" width="42" height="42"/>
+    <use href="#moon-icon" x="100" y="0" width="60" height="42"/>
+    <use href="#raindrop-icon" x="215" y="5" width="42" height="42"/>
   </svg>
   <p class="closing-text">end of this collection</p>
   <p class="p-hint" style="margin-top:16px;">tap ← to read again</p>
@@ -915,12 +1073,14 @@
   const btnNext = document.getElementById('btn-next');
   const zoneLeft = document.getElementById('zone-left');
   const zoneRight = document.getElementById('zone-right');
+  const cornerLeft = document.getElementById('corner-left');
+  const cornerRight = document.getElementById('corner-right');
 
   function wrap(idx){
     const showCorners = idx !== 0 && idx !== total - 1;
     const cornerHtml = showCorners
-      ? '<svg class="corner corner-tl" viewBox="0 0 60 60"><use href="#rose-icon"/></svg>' +
-        '<svg class="corner corner-tr" viewBox="0 0 40 30"><use href="#butterfly-icon"/></svg>'
+      ? '<svg class="corner corner-tl" viewBox="0 0 60 60"><use href="#raindrop-icon"/></svg>' +
+        '<svg class="corner corner-tr" viewBox="0 0 40 30"><use href="#moon-icon"/></svg>'
       : '';
     const footer = (idx === 0 || idx === total - 1) ? '' :
       '<div class="page-footer">' + (idx + 1) + ' / ' + total + '</div>';
@@ -933,6 +1093,8 @@
     indicator.textContent = (current + 1) + ' / ' + total;
     btnPrev.disabled = current === 0;
     btnNext.disabled = current === total - 1;
+    cornerLeft.classList.toggle('is-hidden', current === 0);
+    cornerRight.classList.toggle('is-hidden', current === total - 1);
   }
 
   function init(){
@@ -951,7 +1113,6 @@
 
     sheet.style.transition = 'none';
     sheet.style.transform = 'rotateY(0deg)';
-    // force reflow so the transition re-applies cleanly
     void sheet.offsetWidth;
     sheet.style.transition = 'transform 0.85s cubic-bezier(.45,.05,.35,1)';
 
@@ -983,7 +1144,78 @@
     if(e.key === 'ArrowLeft') go(-1);
   });
 
-  // basic swipe support
+  /* ---------- drag-the-corner-to-flip ---------- */
+  let dragging = false;
+  let dragDirection = 0;
+  let dragStartX = 0;
+  let dragBookWidth = 0;
+  let dragProgress = 0;
+
+  function startDrag(clientX, direction){
+    if(animating) return;
+    if(direction === 1 && current >= total - 1) return;
+    if(direction === -1 && current <= 0) return;
+    dragging = true;
+    dragDirection = direction;
+    dragStartX = clientX;
+    dragBookWidth = document.getElementById('book').getBoundingClientRect().width;
+    dragProgress = 0;
+
+    const nextIndex = current + direction;
+    faceBack.innerHTML = wrap(nextIndex);
+    faceBack.style.transform = direction === 1 ? 'rotateY(180deg)' : 'rotateY(-180deg)';
+    sheet.style.transition = 'none';
+  }
+
+  function moveDrag(clientX){
+    if(!dragging) return;
+    let dx = dragDirection === 1 ? (dragStartX - clientX) : (clientX - dragStartX);
+    dragProgress = Math.max(0, Math.min(1, dx / dragBookWidth));
+    const angle = dragDirection === 1 ? -180 * dragProgress : 180 * dragProgress;
+    sheet.style.transform = 'rotateY(' + angle + 'deg)';
+  }
+
+  function endDrag(){
+    if(!dragging) return;
+    dragging = false;
+    sheet.style.transition = 'transform 0.5s cubic-bezier(.45,.05,.35,1)';
+
+    if(dragProgress > 0.32){
+      animating = true;
+      const nextIndex = current + dragDirection;
+      sheet.style.transform = dragDirection === 1 ? 'rotateY(-180deg)' : 'rotateY(180deg)';
+      function onEnd(ev){
+        if(ev.propertyName !== 'transform') return;
+        sheet.removeEventListener('transitionend', onEnd);
+        current = nextIndex;
+        faceFront.innerHTML = wrap(current);
+        sheet.style.transition = 'none';
+        sheet.style.transform = 'rotateY(0deg)';
+        void sheet.offsetWidth;
+        updateControls();
+        animating = false;
+      }
+      sheet.addEventListener('transitionend', onEnd);
+    } else {
+      sheet.style.transform = 'rotateY(0deg)';
+    }
+    dragProgress = 0;
+  }
+
+  cornerRight.addEventListener('pointerdown', function(e){
+    e.preventDefault();
+    startDrag(e.clientX, 1);
+  });
+  cornerLeft.addEventListener('pointerdown', function(e){
+    e.preventDefault();
+    startDrag(e.clientX, -1);
+  });
+  window.addEventListener('pointermove', function(e){
+    if(dragging) moveDrag(e.clientX);
+  });
+  window.addEventListener('pointerup', endDrag);
+  window.addEventListener('pointercancel', endDrag);
+
   let touchStartX = null;
   let touchStartY = null;
   document.getElementById('book').addEventListener('touchstart', function(e){
